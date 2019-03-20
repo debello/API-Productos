@@ -39,12 +39,10 @@ class Servidor {
        to identify the resource.
     */
     
-    private $query = " SELECT * FROM clientes ";
 
-    private $result = $conn -> query("$query");
-
-    private $contactos = $result;
-
+    private $contactos =  array('zaira' => array('address' => 'Rua do Home Santo, 45', 'url' => '/clientes/zaira'),
+    'xoan' => array('address' => 'Rua da Rosa, 33', 'url'=> '/clientes/xoan'));
+    
     public function serve() {
       
         $uri = $_SERVER['REQUEST_URI'];
@@ -100,7 +98,7 @@ class Servidor {
             break;
         }
     }
-
+    /****************** CREATE DISPLAY DELETE *********************/
     private function create_contact($name){
         if (isset($this->contactos[$name])) {
             header('HTTP/1.1 409 Conflict');
