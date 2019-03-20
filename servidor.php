@@ -1,11 +1,49 @@
 <?php
+$servername = "localhost";
+// El usuario que uséis (este es el que trae por defecto, administrador)
+$username = "root";
+// Esta contraseña está vacía
+$pass = "";
+// Nombre de mi base de datos
+$database = "apiclase";
+
+// Create conection
+$conn = new mysqli($servername, $username, $pass, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("<p>Not connected: " . $conn -> connect_error) ."</p><br>";
+}
+else {
+    echo "<p>Connected successfully. </p><br>";
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+/*
+    while($row = mysqli_fetch_array($result)){
+        echo "<tr>";
+            echo "<td value='count_id'>" . $row['id'] . "</td>";
+            echo "<td>" . $row['nome'] . "</td>";
+            echo "<td>" . $row['descripcion'] . "</td>";
+            echo "<td>" . $row['prezo'] . "</td>";
+            echo "<td>" . $row['categoria'] . "</td>";
+        echo "</tr>";
+    }
+
+*/ 
 class Servidor {
     /* The array key works as id and is used in the URL
        to identify the resource.
     */
-    private $contactos = array('zaira' => array('address' => 'Rua do Home Santo, 45', 'url' => '/clientes/zaira'),
-                              'xoan' => array('address' => 'Rua da Rosa, 33', 'url'=> '/clientes/xoan')
-);
+    
+    private $query = " SELECT * FROM clientes ";
+
+    private $result = $conn -> query("$query");
+
+    private $contactos = $result;
 
     public function serve() {
       

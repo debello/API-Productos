@@ -1,0 +1,12 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+// tenemos un .htaccess en htdocs de contenido:
+	RewriteEngine On
+	RewriteBase /
+	options +FollowSymLinks
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^clientes(.*) /servizoWeb1/servidor.php/$0 [L] 
+
+// Entrar en servidor mediante navegador
+	http://localhost:8080/clientes/
