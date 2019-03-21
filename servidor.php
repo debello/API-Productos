@@ -18,31 +18,25 @@ else {
     echo "<p>Connected successfully. </p><br>";
 }
 
-///////////////////////////////////////////////////////////////////////////////
 
 
 
-/*
-    while($row = mysqli_fetch_array($result)){
-        echo "<tr>";
-            echo "<td value='count_id'>" . $row['id'] . "</td>";
-            echo "<td>" . $row['nome'] . "</td>";
-            echo "<td>" . $row['descripcion'] . "</td>";
-            echo "<td>" . $row['prezo'] . "</td>";
-            echo "<td>" . $row['categoria'] . "</td>";
-        echo "</tr>";
-    }
 
-*/ 
+        // Turn to JSON & output
+        //echo json_encode($cat_arr);
+    
+
+
 class Servidor {
     /* The array key works as id and is used in the URL
        to identify the resource.
     */
     
 
-    private $contactos =  array('zaira' => array('address' => 'Rua do Home Santo, 45', 'url' => '/clientes/zaira'),
-    'xoan' => array('address' => 'Rua da Rosa, 33', 'url'=> '/clientes/xoan'));
+    private $contactos;
     
+
+
     public function serve() {
       
         $uri = $_SERVER['REQUEST_URI'];
@@ -51,6 +45,7 @@ class Servidor {
         array_shift($paths); // Hack; get rid of initials empty string
         $resource = array_shift($paths);
       
+
         if ($resource == 'clientes') {
             $name = array_shift($paths);
 	
@@ -63,7 +58,31 @@ class Servidor {
         } else {
             // S? se aceptan recursos desde 'clientes'
             header('HTTP/1.1 404 Not Found');
-        } 
+        }
+        ////////////////////// SELECT ALL & OUTPUT EN JSON //////////////////////////////////////////
+        $query = " SELECT * FROM clientes";
+
+        $result = $conn -> query("$query");
+
+
+        $cat_arr = array();
+        $cat_arr['data'] = array();
+
+        while($row = mysqli_fetch_array($result)){
+            extract($row);
+
+            $cat_item = array(
+                'auto_id' => $cat_id,
+                'nome' => $cat_name
+            );
+            // Push to "data"
+            array_push($cat_arr['data'], $cat_item);
+            } // $cat_arr = $contactos
+            
+            $this->contactos = $cat_arr;
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+        
+
     }
         
     private function handle_base($method) {
@@ -126,7 +145,7 @@ class Servidor {
         }
     }
     
-    private function display_contact($name) {
+    private function display_contact($name) { //////////// DISPLAY
         if (array_key_exists($name, $this->contactos)) {
             echo json_encode($this->contactos[$name]);
         } else {
