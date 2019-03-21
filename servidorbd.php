@@ -1,4 +1,14 @@
 <?php
+/**** TODO ****
+ * [DISPLAY] - Conseguir que ejecute 'display' tanto en curl (curl -v http...clientes) como en navegador (http... clientes)
+ * [CREATE]
+ * [UPDATE]
+ * [DELETE]
+ * 
+ * /
+
+
+
 
         // Turn to JSON & output
         //echo json_encode($cat_arr);
@@ -71,14 +81,15 @@ class Servidor {
             extract($row);
     
             $cat_item = array(
-                $row['auto_id'] => $cat_id,
-                $row['nome'] => $cat_name
+                $row['nome'] => $cat_name,
+                $row['address'] => $cat_id
             );
             // Push to "data"
             array_push($cat_arr['data'], $cat_item);
             } // $cat_arr = $contactos
             
-            $this->contactos = $cat_arr;
+            $this->contactos = $cat_arr; // nuestro $cat_arr se convierte en $contactos
+
             //var_dump($this->contactos);
         //echo var_dump($cat_arr['data']  );
         //echo "<br>" . json_encode($cat_arr); /// catarr data imprime nombres y auto_ids !
@@ -181,6 +192,9 @@ var_dump($server->getContactos())
 
     PHP contructor
     https://www.phptpoint.com/php-constructor/
+
+    How yo access a class variable inside a function
+    https://stackoverflow.com/questions/38984270/how-to-access-a-class-variable-inside-a-function-with-php
 
 */
 
