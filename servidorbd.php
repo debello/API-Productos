@@ -1,37 +1,13 @@
 <?php
-$servername = "localhost";
-// El usuario que uséis (este es el que trae por defecto, administrador)
-$username = "root";
-// Esta contraseña está vacía
-$pass = "";
-// Nombre de mi base de datos
-$database = "apiclase";
-
-// Create conection
-$conn = new mysqli($servername, $username, $pass, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("<p>Not connected: " . $conn -> connect_error) ."</p><br>";
-}
-else {
-    echo "<p>Connected successfully. </p><br>";
-}
-
-
-
-
 
         // Turn to JSON & output
         //echo json_encode($cat_arr);
-    
-
-
+ 
 class Servidor {
     /* The array key works as id and is used in the URL
        to identify the resource.
     */
-    
+
 
     private $contactos;
     
@@ -45,7 +21,6 @@ class Servidor {
         array_shift($paths); // Hack; get rid of initials empty string
         $resource = array_shift($paths);
       
-
         if ($resource == 'clientes') {
             $name = array_shift($paths);
 	
@@ -60,26 +35,50 @@ class Servidor {
             header('HTTP/1.1 404 Not Found');
         }
         ////////////////////// SELECT ALL & OUTPUT EN JSON //////////////////////////////////////////
+        $servername = "localhost";
+        // El usuario que uséis (este es el que trae por defecto, administrador)
+        $username = "root";
+        // Esta contraseña está vacía
+        $pass = "";
+        // Nombre de mi base de datos
+        $database = "apiclase";
+    
+        // Create conection
+        $conn = new mysqli($servername, $username, $pass, $database);
+    
+        // Check connection
+        if ($conn->connect_error) {
+            die("<p>Not connected: " . $conn -> connect_error) ."</p><br>";
+        }
+        else {
+            echo "<p>Connected successfully. </p><br>";
+        }
+    
         $query = " SELECT * FROM clientes";
-
+    
         $result = $conn -> query("$query");
-
-
+    
+    
         $cat_arr = array();
         $cat_arr['data'] = array();
-
+        $cat_id = 0;
+        $cat_name = '';
+    
         while($row = mysqli_fetch_array($result)){
             extract($row);
-
+    
             $cat_item = array(
-                'auto_id' => $cat_id,
-                'nome' => $cat_name
+                $row['auto_id'] => $cat_id,
+                $row['nome'] => $cat_name
             );
             // Push to "data"
             array_push($cat_arr['data'], $cat_item);
             } // $cat_arr = $contactos
             
             $this->contactos = $cat_arr;
+            var_dump($this->contactos);
+        echo var_dump($cat_arr['data']  );
+        echo "<br>" . json_encode($cat_arr); /// catarr data imprime nombres y auto_ids !
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         
 

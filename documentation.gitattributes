@@ -12,4 +12,7 @@
 	http://localhost:8080/clientes/
 
 
+// en cmd
+	curl -v http://localhost:8080/clientes/xoan
+
 // Creamos DB de datos: 
