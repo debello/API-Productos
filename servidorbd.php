@@ -9,9 +9,12 @@ class Servidor {
     */
 
 
-    private $contactos;
-    
+    public $contactos;
 
+    
+    public function getContactos() {
+        return $this->contactos;
+    }
 
     public function serve() {
       
@@ -48,7 +51,7 @@ class Servidor {
     
         // Check connection
         if ($conn->connect_error) {
-            die("<p>Not connected: " . $conn -> connect_error) ."</p><br>";
+            die("Not connected: " . $conn -> connect_error);
         }
         else {
             echo "<p>Connected successfully. </p><br>";
@@ -76,9 +79,9 @@ class Servidor {
             } // $cat_arr = $contactos
             
             $this->contactos = $cat_arr;
-            var_dump($this->contactos);
-        echo var_dump($cat_arr['data']  );
-        echo "<br>" . json_encode($cat_arr); /// catarr data imprime nombres y auto_ids !
+            //var_dump($this->contactos);
+        //echo var_dump($cat_arr['data']  );
+        //echo "<br>" . json_encode($cat_arr); /// catarr data imprime nombres y auto_ids !
         ///////////////////////////////////////////////////////////////////////////////////////////// 
         
 
@@ -168,5 +171,18 @@ class Servidor {
 
 $server = new Servidor;
 $server->serve();
+var_dump($server->getContactos())
+
+
+/*** Fuentes y Bibliografía ***//*
+
+    PHP Api by Traversy
+    https://github.com/bradtraversy/php_rest_myblog/blob/master/api/category/read.php
+
+    PHP contructor
+    https://www.phptpoint.com/php-constructor/
+
+*/
+
 
 ?>

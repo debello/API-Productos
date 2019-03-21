@@ -8,6 +8,9 @@
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^clientes(.*) /servizoWeb1/servidor.php/$0 [L] 
 
+//[!] tb puede ser "servizo web"
+//[!] http.conf -> choca con nuestro htaccess (debajo del archivo, if exists)
+
 // Entrar en servidor mediante navegador
 	http://localhost:8080/clientes/
 
