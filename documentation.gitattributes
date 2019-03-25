@@ -19,3 +19,13 @@
 	curl -v http://localhost:8080/clientes/xoan
 
 // Creamos DB de datos: 
+
+
+**
+Logramos borarr con DELETE mediante la conex de base de datos
+y un DELETE FROM...
+
+Revistar ['data'] para crear un array
+	$contactos = array( zaira => array(etc) paco....
+	y no
+	$contactos = data => zaira [].....

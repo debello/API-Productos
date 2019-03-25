@@ -22,7 +22,59 @@ class Servidor {
 
     public $contactos;
 
-    
+    public function getConex(){
+        ////////////////////// SELECT ALL & OUTPUT EN JSON //////////////////////////////////////////
+        $servername = "localhost";
+        // El usuario que uséis (este es el que trae por defecto, administrador)
+        $username = "root";
+        // Esta contraseña está vacía
+        $pass = "";
+        // Nombre de mi base de datos
+        $database = "apiclase";
+
+        // Create conection
+        $conn = new mysqli($servername, $username, $pass, $database);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Not connected: " . $conn -> connect_error);
+        }
+        else {
+            echo "<p>Connected successfully. </p><br>";
+        }
+
+        $query = " SELECT * FROM clientes";
+
+        $result = $conn -> query("$query");
+
+
+        $cat_arr = array();
+        $cat_arr['data'] = array();
+        $cat_id = 0;
+        $cat_name = '';
+
+        while($row = mysqli_fetch_array($result)){
+            //extract($row);
+
+            $cat_item = array(
+                $row['nome'] => $cat_name,
+                $row['address'] => $cat_id
+            );
+            // Push to "data"
+            array_push($cat_arr['data'], $cat_item);
+            } // $cat_arr = $contactos
+            
+            $this->contactos = $cat_arr; // nuestro $cat_arr se convierte en $contactos
+            // echo "antes";
+            // var_dump($cat_arr);
+            // echo "despois";
+            //var_dump($this->contactos);
+        //echo var_dump($cat_arr['data']  );
+        //echo "<br>" . json_encode($cat_arr); /// catarr data imprime nombres y auto_ids !
+        ///////////////////////////////////////////////////////////////////////////////////////////// 
+
+
+    }
     public function getContactos() {
         return $this->contactos;
     }
@@ -48,53 +100,6 @@ class Servidor {
             // S? se aceptan recursos desde 'clientes'
             header('HTTP/1.1 404 Not Found');
         }
-        ////////////////////// SELECT ALL & OUTPUT EN JSON //////////////////////////////////////////
-        $servername = "localhost";
-        // El usuario que uséis (este es el que trae por defecto, administrador)
-        $username = "root";
-        // Esta contraseña está vacía
-        $pass = "";
-        // Nombre de mi base de datos
-        $database = "apiclase";
-    
-        // Create conection
-        $conn = new mysqli($servername, $username, $pass, $database);
-    
-        // Check connection
-        if ($conn->connect_error) {
-            die("Not connected: " . $conn -> connect_error);
-        }
-        else {
-            echo "<p>Connected successfully. </p><br>";
-        }
-    
-        $query = " SELECT * FROM clientes";
-    
-        $result = $conn -> query("$query");
-    
-    
-        $cat_arr = array();
-        $cat_arr['data'] = array();
-        $cat_id = 0;
-        $cat_name = '';
-    
-        while($row = mysqli_fetch_array($result)){
-            extract($row);
-    
-            $cat_item = array(
-                $row['nome'] => $cat_name,
-                $row['address'] => $cat_id
-            );
-            // Push to "data"
-            array_push($cat_arr['data'], $cat_item);
-            } // $cat_arr = $contactos
-            
-            $this->contactos = $cat_arr; // nuestro $cat_arr se convierte en $contactos
-
-            //var_dump($this->contactos);
-        //echo var_dump($cat_arr['data']  );
-        //echo "<br>" . json_encode($cat_arr); /// catarr data imprime nombres y auto_ids !
-        ///////////////////////////////////////////////////////////////////////////////////////////// 
         
 
     }
@@ -151,9 +156,27 @@ class Servidor {
     }
     
     private function delete_contact($name) {
+        $this->getConex();
+        echo 'probando if';
+        $servername = "localhost";
+        // El usuario que uséis (este es el que trae por defecto, administrador)
+        $username = "root";
+        // Esta contraseña está vacía
+        $pass = "";
+        // Nombre de mi base de datos
+        $database = "apiclase";
+        $conn = new mysqli($servername, $username, $pass, $database);
+        echo "nome:".$name;
+        $query = " DELETE FROM clientes WHERE nome='".$name."'";
+        //var_dump($query);
+        echo "probando query:".$query;
+        $conn-> query($query);
+        echo "usuario borrado";
+        //$this->result();
         if (isset($this->contactos[$name])) {
             unset($this->contactos[$name]);
-            $this->result();
+            //borrar da base de datos
+           
         } else {
             header('HTTP/1.1 404 Not Found');
         }
@@ -182,9 +205,10 @@ class Servidor {
   }
 
 $server = new Servidor;
+$server->getConex();
+//$server->getContactos();
 $server->serve();
-var_dump($server->getContactos())
-
+//var_dump($server->getContactos()) // muestra nuestro json 
 
 /*** Fuentes y Bibliografía ***//*
 
