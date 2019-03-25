@@ -3,7 +3,9 @@
  * [DISPLAY] - Conseguir que ejecute 'display' tanto en curl (curl -v http...clientes) como en navegador (http... clientes)
  * [CREATE]
  * [UPDATE]
- * [DELETE]
+ * [DELETE] - CONSEGUIDO
+ * 
+ * [!!!] - contactos empieza por ['data']... arreglarlo
  * 
  * 
  * */
@@ -49,7 +51,7 @@ class Servidor {
 
 
         $cat_arr = array();
-        $cat_arr['data'] = array();
+        //$cat_arr['data'] = array();
         $cat_id = 0;
         $cat_name = '';
 
@@ -61,10 +63,12 @@ class Servidor {
                 $row['address'] => $cat_id
             );
             // Push to "data"
-            array_push($cat_arr['data'], $cat_item);
+            array_push($cat_arr, $cat_item);
             } // $cat_arr = $contactos
             
-            $this->contactos = $cat_arr; // nuestro $cat_arr se convierte en $contactos
+            $this->contactos = $cat_arr;
+            return $conn;
+            // nuestro $cat_arr se convierte en $contactos
             // echo "antes";
             // var_dump($cat_arr);
             // echo "despois";
@@ -156,31 +160,27 @@ class Servidor {
     }
     
     private function delete_contact($name) {
-        $this->getConex();
-        echo 'probando if';
-        $servername = "localhost";
-        // El usuario que uséis (este es el que trae por defecto, administrador)
-        $username = "root";
-        // Esta contraseña está vacía
-        $pass = "";
-        // Nombre de mi base de datos
-        $database = "apiclase";
-        $conn = new mysqli($servername, $username, $pass, $database);
-        echo "nome:".$name;
-        $query = " DELETE FROM clientes WHERE nome='".$name."'";
-        //var_dump($query);
-        echo "probando query:".$query;
-        $conn-> query($query);
-        echo "usuario borrado";
-        //$this->result();
-        if (isset($this->contactos[$name])) {
-            unset($this->contactos[$name]);
+        // Según la semántica de nuestro array... 
+        // $contacts = [0 => xoan..., 1 => zaira...]
+        // debería ser
+        // $contacts = [xoan => [....], zaira => [...]]
+        echo "$name";
+        var_dump($this->contactos);
+    //Hasta que arreglemos ['data'] no podemos usar $contactos[$name]
+        if (isset($this->contactos[2][$name])) {
+            $conn = $this->getConex();
+            echo 'dentro del if';
+            unset($this->contactos[2][$name]);
             //borrar da base de datos
+
+            $query = " DELETE FROM clientes WHERE nome='".$name."'";
+            $conn-> query($query);
            
         } else {
             header('HTTP/1.1 404 Not Found');
         }
     }
+    
     
     private function display_contact($name) { //////////// DISPLAY
         if (array_key_exists($name, $this->contactos)) {
@@ -206,7 +206,7 @@ class Servidor {
 
 $server = new Servidor;
 $server->getConex();
-//$server->getContactos();
+$server->getContactos();
 $server->serve();
 //var_dump($server->getContactos()) // muestra nuestro json 
 
