@@ -207,6 +207,9 @@ class Servidor {
 $server = new Servidor;
 $server->getConex();
 $server->getContactos();
+echo "<br>principio del vardump<br>";
+var_dump($server->getContactos());
+echo "<br>fin del vardump<br>";
 $server->serve();
 //var_dump($server->getContactos()) // muestra nuestro json 
 
