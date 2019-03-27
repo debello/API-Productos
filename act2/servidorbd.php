@@ -59,6 +59,7 @@ class Servidor {
             //extract($row);
 
             $cat_item = array(
+                $creada
                 $row['nome'] => $cat_name,
                 $row['address'] => $cat_id
             );

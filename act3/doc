@@ -1,0 +1,14 @@
+token
+cd506ec6683c9d0e73dc5fd42ae4d4205a4849c4e4722b2f15411d660947391e
+
+key
+d3e679ed69dc350ffacbe8181ce7fc2a
+
+// CORRECTO
+curl "https://api.trello.com/1/members/me/boards?key=d3e679ed69dc350ffacbe8181ce7fc2a&token=cd506ec6683c9d0e73dc5fd42ae4d4205a4849c4e4722b2f15411d660947391e"
+
+// id example to idboard
+5c9bb7259de8271418b4c983
+
+curl "https://api.trello.com/1/boards/5c9bb7259de8271418b4c983?key=d3e679ed69dc350ffacbe8181ce7fc2a&token=cd506ec6683c9d0e73dc5fd42ae4d4205a4849c4e4722b2f15411d660947391e"
+curl 'https://api.trello.com/1/boards/{idBoard}?key={yourKey}&token={yourToken}'
