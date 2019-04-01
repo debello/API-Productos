@@ -1,14 +1,8 @@
 <?php
 /**** TODO ****
- * [DISPLAY] - Conseguir que ejecute 'display' tanto en curl (curl -v http...clientes) como en navegador (http... clientes)
- * [CREATE] - CONSEGUIDO
- * [UPDATE] - X no hace falta
- * [DELETE] - CONSEGUIDO
- *  
- *  Para que funcione en casa
- *  - Mirar htaccess en htdocs
- *  - estructura ficheros servizoWeb
- *  - que exista bbdd con server, user, pass y database name
+* TRELLO
+*
+*
  * */
 
 
