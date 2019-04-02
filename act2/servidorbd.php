@@ -1,14 +1,11 @@
 <?php
 /**** TODO ****
- * [DISPLAY] - Conseguir que ejecute 'display' tanto en curl (curl -v http...clientes) como en navegador (http... clientes)
- * [CREATE] - CONSEGUIDO
- * [UPDATE] - X no hace falta
- * [DELETE] - CONSEGUIDO
+ * [DISPLAY] - [O]
+ * [CREATE] - [O]
+ * [UPDATE] - [-]
+ * [DELETE] - [O]
  *  
- *  Para que funcione en casa
- *  - Mirar htaccess en htdocs
- *  - estructura ficheros servizoWeb
- *  - que exista bbdd con server, user, pass y database name
+ *
  * */
 
 
@@ -43,7 +40,7 @@ class Servidor {
             die("Not connected: " . $conn -> connect_error);
         }
         else {
-            echo "<p>Connected successfully. </p><br>";
+            
         }
 
         $query = " SELECT * FROM clientes";
