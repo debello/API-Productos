@@ -22,7 +22,10 @@ class BaseDatos{
         $this->conn->close();
     }
 }
-$conexion = new BaseDatos;
 
-$conexion->getConexion();
+// Creando una nueva conexión (opciona, se puede hacer en el fichero de destino)
+//$conexion2 = new BaseDatos;
+//$conexion2->getConexion();
+
+
 ?>

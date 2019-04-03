@@ -1,5 +1,5 @@
 <?php
-include '../basedatos.php';
+
 class Produto{
  
     // conexión coa táboa da base de datos
