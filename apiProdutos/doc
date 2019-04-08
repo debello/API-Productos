@@ -1,0 +1,15 @@
+
+// Conexión Base de Datos
+basedatos.php
+
+// Creación y backup de BD
+bd.sql
+
+//Obtención de los datos de nuestra BD
+/objectos/produto.php
+
+//Lectura de nuestros datos
+/produto/lectura.php
+
+
+
