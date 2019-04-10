@@ -11,5 +11,11 @@ bd.sql
 //Lectura de nuestros datos
 /produto/lectura.php
 
-
-
+basededatos.php
+doc
+            objetos/
+                    producto.php
+            produto/
+                    lectura.php
+                    creacion.php
+                    lectura1.php
