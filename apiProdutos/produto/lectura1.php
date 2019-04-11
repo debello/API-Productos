@@ -6,26 +6,24 @@ header("Content-Type: application/json; charset=UTF-8");
 include '../basedatos.php';
 include '../obxectos/produto.php';
 
-// instanciar a base de datos e o obxecto produto
-// $baseDatos = new BaseDatos();
-// $db = $baseDatos->getConexion();
 $conexion = new BaseDatos;
 $conn = $conexion->getConexion();
-
-// inicializar o obxecto produto
 $produto = new Produto($conn);
 
-//print_r($produto);
-//var_dump($produto->ler());
-// consulta de produtos
-$stmt = $produto->ler();
-$num = $stmt->num_rows;
+// Ejemplo que debería funcionar
+// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
+
+//$data = file_get_contents('php://input');
 $data = json_decode(file_get_contents('php://input'));
-$produto->id = $data->id;
+//$data2 = explode("?", $data);
+var_dump($data); // Null o string vacío
+//var_dump($data2);
+//print_r($data);
+//$produto->id = $data['id'];
+$stmt = $produto->ler1();
+// $num = $stmt->num_rows;
 
-echo $producto->id;
-
-// comprobar se hai máis de 0 rexistros devoltos
+// // comprobar se hai máis de 0 rexistros devoltos
 // if($num>0){
 //     // array de produtos
 //     $produtos_arr = array();
@@ -33,7 +31,13 @@ echo $producto->id;
 //     while ($item=$stmt->fetch_assoc()){
 //         //echo "nome produto:".$item["nome"];
 //         $item_produto=array(
-//             "id" => $item["id"]);
+//             "id" => $item["id"],
+//             "nome" => utf8_decode($item["nome"]),
+//             "descricion" => utf8_decode($item["descricion"]),
+//             "prezo" => $item["prezo"],
+//             "idCategoria" => $item["idCategoria"],
+//             "nomeCategoria" => utf8_decode($item["nomeCategoria"])
+//         );
 //         array_push($produtos_arr["records"],$item_produto);
 //     }
 //     // indicar o código de resposta - 200 OK
@@ -51,10 +55,9 @@ echo $producto->id;
 // }
 
 
-// [O] Funciona en CURL
+// [O] Funciona en CURL - lectura.php
 // curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura.php"
 
-//curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=999"
 
 
 

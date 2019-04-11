@@ -1,3 +1,8 @@
+[!] lectura1.php - La respuesta de http...?id=2 no logra convertirse en datos que
+podamos manejar ($data = json_encode(file_get... (?)))
+
+
+
 
 // Conexión Base de Datos
 basedatos.php
