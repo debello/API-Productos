@@ -12,7 +12,7 @@ $produto = new Produto($conn);
 
 // Ejemplo que debería funcionar
 // curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
-// curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":\"150\",\"descricion\":\"A mellor almofada do mercado\",\"idCategoria\":\"2\",\"id\":\"66\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
+// curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":150,\"descricion\":\"A mellor almofada do mercado\",\"idCategoria\":2,\"id\":61}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
 //$data = file_get_contents('php://input');
 $data = json_decode(file_get_contents('php://input'));
 var_dump($data);
@@ -33,42 +33,46 @@ $produto->idCategoria = $data->idCategoria;
 //print_r($data);
 //$produto->id = $data['id'];
 $stmt = $produto->consultarID();
-var_dump($stmt);
+//var_dump($stmt);
 $num = $stmt->num_rows;
-// $affected = mysqli_affected_rows($stmt);
-// var_dump($affected);
+if ($stmt) {
+    echo "insertao";
+}
+else {
+    echo "no insertao";
+}
 
 // comprobar se hai máis de 0 rexistros devoltos
-if($num>0){
-    echo "num No está vacío";
-    // array de produtos
-    // $produtos_arr = array();
-    // $produtos_arr["records"] = array();
-    // while ($item=$stmt->fetch_assoc()){
-    //     //echo "nome produto:".$item["nome"];
-    //     $item_produto=array(
-    //         "id" => $item["id"],
-    //         "nome" => utf8_decode($item["nome"]),
-    //         "descricion" => utf8_decode($item["descricion"]),
-    //         "prezo" => $item["prezo"],
-    //         "idCategoria" => $item["idCategoria"],
-    //         "nomeCategoria" => utf8_decode($item["nomeCategoria"])
-    //     );
-    //     array_push($produtos_arr["records"],$item_produto);
-    // }
-    // // indicar o código de resposta - 200 OK
-    // http_response_code(200);
-    // // mostrar os produtos no formato json
-    // echo json_encode($produtos_arr,JSON_PRETTY_PRINT);
-}
-else{
-  // poñer o código de resposta a - 404 Not found
-  http_response_code(404);
-  // informar ao usuario de que non se atoparon produtos
-  echo json_encode(
-      array("message" => "Non se atoparon produtos.")
-  );
-}
+// if($num>0){
+//     echo "num No está vacío";
+//     array de produtos
+//     $produtos_arr = array();
+//     $produtos_arr["records"] = array();
+//     while ($item=$stmt->fetch_assoc()){
+//         //echo "nome produto:".$item["nome"];
+//         $item_produto=array(
+//             "id" => $item["id"],
+//             "nome" => utf8_decode($item["nome"]),
+//             "descricion" => utf8_decode($item["descricion"]),
+//             "prezo" => $item["prezo"],
+//             "idCategoria" => $item["idCategoria"],
+//             "nomeCategoria" => utf8_decode($item["nomeCategoria"])
+//         );
+//         array_push($produtos_arr["records"],$item_produto);
+//     }
+//     // indicar o código de resposta - 200 OK
+//     http_response_code(200);
+//     // mostrar os produtos no formato json
+//     echo json_encode($produtos_arr,JSON_PRETTY_PRINT);
+// }
+// else{
+//   // poñer o código de resposta a - 404 Not found
+//   http_response_code(404);
+//   // informar ao usuario de que non se atoparon produtos
+//   echo json_encode(
+//       array("message" => "Non se atoparon produtos.")
+//   );
+// }
 
 
 // [O] Funciona en CURL - lectura.php

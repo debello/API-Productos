@@ -59,12 +59,13 @@ class Produto{
             nome ='".$this->nome."', 
             prezo =".$this->prezo.", 
             descricion='".$this->descricion."', 
-            idCategoria=".$this->idCategoria.", 
+            idCategoria=".$this->idCategoria." 
             WHERE id = ".$this->id;
 
         $stmt = $this->conn->query($query);
         // execución da consulta
         //$stmt->execute();
+
         /* 
         UPDATE produtos 
         SET nome = 'paco', prezo = 999
