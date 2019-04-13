@@ -12,6 +12,7 @@ class Produto{
     public $idCategoria;
     public $nomeCategoria;
     public $creado;
+    public $oldId;
     // constructor con $db como conexión coa base de datos
     public function __construct($db){
         $this->conn = $db;
@@ -53,6 +54,25 @@ class Produto{
 
     }
 
+    function consultarID(){
+        $query = "UPDATE ".$this->taboa." SET 
+            nome ='".$this->nome."', 
+            prezo =".$this->prezo.", 
+            descricion='".$this->descricion."', 
+            idCategoria=".$this->idCategoria.", 
+            WHERE id = ".$this->id;
+
+        $stmt = $this->conn->query($query);
+        // execución da consulta
+        //$stmt->execute();
+        /* 
+        UPDATE produtos 
+        SET nome = 'paco', prezo = 999
+        WHERE nome = 'Carteira';
+        */
+        return $stmt;
+
+    }
 
 
 }

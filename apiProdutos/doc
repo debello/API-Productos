@@ -1,7 +1,16 @@
-[!] lectura1.php - La respuesta de http...?id=2 no logra convertirse en datos que
+[O] Leer todo
+[O] Crear producto
+[O] Leer un sólo producto
+[-] Actualizar
+[-] Borrar
+[-] Buscador
+[-] CRUD en categorias.php
+----------------------------------
+
+[O] lectura1.php - La respuesta de http...?id=2 no logra convertirse en datos que
 podamos manejar ($data = json_encode(file_get... (?)))
 
-
+// https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
 
 
 // Conexión Base de Datos
