@@ -1,15 +1,11 @@
 [O] Leer todo
 [O] Crear producto
 [O] Leer un sólo producto
-[-] Actualizar
-[-] Borrar
-[-] Buscador
+[O] Actualizar
+[O] Borrar
+[O] Buscador
 [-] CRUD en categorias.php
 ----------------------------------
-
-[O] lectura1.php - La respuesta de http...?id=2 no logra convertirse en datos que
-podamos manejar ($data = json_encode(file_get... (?)))
-
 // https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
 
 
@@ -33,3 +29,10 @@ doc
                     lectura.php
                     creacion.php
                     lectura1.php
+
+Crear
+curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
+Borrar
+curl -v -X POST -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php"
+Buscar (1 producto)
+curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"

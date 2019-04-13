@@ -14,11 +14,12 @@ class Produto{
     public $creado;
     public $oldId;
     // constructor con $db como conexión coa base de datos
-    public function __construct($db){
+    public function __construct($db) {
         $this->conn = $db;
     }
+
     // lectura de produtos
-    function ler(){
+    function ler() {
         // consulta select all
         $query = "SELECT
                     c.nome as nomeCategoria, p.id, p.nome, p.descricion, p.prezo, p.idCategoria, p.creado
@@ -35,7 +36,8 @@ class Produto{
         //$stmt->execute();
         return $stmt;
     }
-    function crear(){
+
+    function crear() {
         $query = "INSERT INTO ".$this->taboa." (nome, descricion, prezo) 
             VALUES ('".$this->nome."', '".$this->descricion."', ".$this->prezo.")";
         $stmt = $this->conn->query($query);
@@ -45,7 +47,7 @@ class Produto{
 
     }
 
-    function ler1(){
+    function ler1() {
         $query = "SELECT * FROM ".$this->taboa." WHERE id=".$this->id;
         $stmt = $this->conn->query($query);
         // execución da consulta
@@ -54,7 +56,7 @@ class Produto{
 
     }
 
-    function consultarID(){
+    function consultarID() {
         $query = "UPDATE ".$this->taboa." SET 
             nome ='".$this->nome."', 
             prezo =".$this->prezo.", 
@@ -75,5 +77,19 @@ class Produto{
 
     }
 
+    function borrar() {
+        $query = "DELETE FROM ".$this->taboa." 
+            WHERE id = ".$this->id;
+        $stmt = $this->conn->query($query);
+        return $stmt;
+    }
+
+    function buscar() {
+        $query = "SELECT * FROM ".$this->taboa."
+            WHERE nome LIKE '%".$this->nome."%'";
+        $stmt = $this->conn->query($query);
+        return $stmt; 
+        
+    }
 
 }
