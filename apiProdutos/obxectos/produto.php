@@ -45,6 +45,37 @@ class Produto{
         //$stmt->execute();
         return $stmt;
 
+        /*
+
+            $query = "INSERT INTO
+        " . $this->taboa . "
+        SET
+        nome=:nome, prezo=:prezo, descricion=:descricion";
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+    
+        // sanitize
+        $this->nome = htmlspecialchars(strip_tags($this->nome));
+        $this->descricion = htmlspecialchars(strip_tags($this->descricion));
+        $this->prezo = htmlspecialchars(strip_tags($this->prezo));
+        // $this->category_id=htmlspecialchars(strip_tags($this->category_id));
+        // $this->created=htmlspecialchars(strip_tags($this->created));
+    
+        // bind values
+        $stmt->bindParam(":nome", $this->nome);
+        $stmt->bindParam(":descricion", $this->descricion);
+        $stmt->bindParam(":prezo", $this->prezo);
+        // $stmt->bindParam(":category_id", $this->category_id);
+        // $stmt->bindParam(":created", $this->created);
+    
+        // execute query
+        if($stmt->execute()){
+            return true;
+        }
+    
+        return false;
+        */
+
     }
 
     function ler1() {
@@ -93,3 +124,5 @@ class Produto{
     }
 
 }
+
+$responseCode = [[200 => "Todo OK"],[404 => "Page not found"]];
