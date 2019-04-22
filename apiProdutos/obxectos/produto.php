@@ -38,43 +38,44 @@ class Produto{
     }
 
     function crear() {
-        $query = "INSERT INTO ".$this->taboa." (nome, descricion, prezo) 
-            VALUES ('".$this->nome."', '".$this->descricion."', ".$this->prezo.")";
-        $stmt = $this->conn->query($query);
-        // execución da consulta
-        //$stmt->execute();
-        return $stmt;
+        // $query = "INSERT INTO ".$this->taboa." (nome, descricion, prezo) 
+        //     VALUES ('".$this->nome."', '".$this->descricion."', ".$this->prezo.")";
+        // $stmt = $this->conn->query($query);
+        // // execución da consulta
+        // //$stmt->execute();
+        // return $stmt;
 
-        /*
+        
 
-            $query = "INSERT INTO
-        " . $this->taboa . "
-        SET
-        nome=:nome, prezo=:prezo, descricion=:descricion";
+            $query = "INSERT INTO " . $this->taboa . "
+         (nome, descricion, prezo) 
+         VALUES ( :nome, :descricion, :prezo )";
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // sanitize
-        $this->nome = htmlspecialchars(strip_tags($this->nome));
-        $this->descricion = htmlspecialchars(strip_tags($this->descricion));
-        $this->prezo = htmlspecialchars(strip_tags($this->prezo));
+        // $this->nome = htmlspecialchars(strip_tags($this->nome));
+        // $this->descricion = htmlspecialchars(strip_tags($this->descricion));
+        // $this->prezo = htmlspecialchars(strip_tags($this->prezo));
         // $this->category_id=htmlspecialchars(strip_tags($this->category_id));
         // $this->created=htmlspecialchars(strip_tags($this->created));
     
         // bind values
-        $stmt->bindParam(":nome", $this->nome);
-        $stmt->bindParam(":descricion", $this->descricion);
-        $stmt->bindParam(":prezo", $this->prezo);
+        $stmt->bindParam("nome", $this->nome);
+        $stmt->bindParam("descricion", $this->descricion);
+        $stmt->bindParam("prezo", $this->prezo);
         // $stmt->bindParam(":category_id", $this->category_id);
         // $stmt->bindParam(":created", $this->created);
     
         // execute query
-        if($stmt->execute()){
-            return true;
-        }
+        $stmt->execute();
+        return $stmt;
+        // if($stmt->execute()){
+        //     return true;
+        // }
     
-        return false;
-        */
+        // return false;
+        
 
     }
 

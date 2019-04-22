@@ -4,31 +4,33 @@
 [O] Actualizar
 [O] Borrar
 [O] Buscador
+[-] SQL Injection Free on read()
+[-] SQL Injection on rest
+[-] Server messages at 3/6
+[-] Server messages at 6/6
+[-]
 [-] CRUD en categorias.php
 ----------------------------------
 // https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
 
 
-// Conexión Base de Datos
-basedatos.php
 
-// Creación y backup de BD
-bd.sql
-
-//Obtención de los datos de nuestra BD
-/objectos/produto.php
-
-//Lectura de nuestros datos
-/produto/lectura.php
-
+// Arquitectura
 basededatos.php
+bd.sql
 doc
-            objetos/
-                    producto.php
-            produto/
-                    lectura.php
-                    creacion.php
-                    lectura1.php
+objetos/
+        producto.php
+
+produto/
+        actualizacion.php
+        borrado.php
+        buscador.php
+
+        creacion.php
+        lectura.php
+        lectura1.php
+
 
 Crear
 curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
