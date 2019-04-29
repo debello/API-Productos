@@ -10,9 +10,11 @@
 [-] Server messages at 6/6
 [-]
 [-] CRUD en categorias.php
-----------------------------------
-// https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
+[O] Documentacion de Recursos y Métodos (Arquitectura)
+-----------------------------------------------------------------------
 
+https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
+https://diego.com.es/sentencias-preparadas-en-php
 
 
 // Arquitectura
@@ -26,15 +28,41 @@ produto/
         actualizacion.php
         borrado.php
         buscador.php
-
         creacion.php
         lectura.php
         lectura1.php
 
 
-Crear
+// Buscar (Todo)
+curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura.php"
+
+// Crear
 curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
-Borrar
+
+// Borrar
 curl -v -X POST -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php"
-Buscar (1 producto)
+
+// Buscar (1 producto)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
+
+// Actualizar
+curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":150,\"descricion\":\"A mellor almofada do mercado\",\"idCategoria\":2,\"id\":61}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
+
+
+
+Recurso     Método-HTTP        Ruta Real                            Funcion
+-------     -----------         --------                            ---------
+Produtos        GET             /produto/lectura.php            Ver todas las entradas
+                POST            /produto/creacion.php           Crea unha entrada(produto)
+                PUT             /produto/actualizacion.php      Actualiza los parámetros de un produto
+                DELETE          /produto/borrado.php            Borra unha entrada según o id
+-----------------------------------------------------------------------------------------------------|
+Categorias      GET             /categorias/lectura.php         Ver todas las entradas
+                POST            /categorias/creacion.php        Crea unha entrada(categorias)
+                PUT             /categorias/actualizacion.php   Actualiza los parámetros de un categorias
+                DELETE          /categorias/borrado.php         Borra unha entrada según o id
+
+
+
+
+
