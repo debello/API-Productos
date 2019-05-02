@@ -2,4 +2,4 @@ RewriteEngine On
 RewriteBase /
 options +FollowSymLinks
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^clientes(.*) /servizoWeb/act2/servidorbd.php/$0 [L]
+RewriteRule ^tienda(.*) /produto/lectura.php/$0 [L]
