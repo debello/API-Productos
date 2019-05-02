@@ -11,23 +11,10 @@ $conn = $conexion->getConexion();
 $produto = new Produto($conn);
 
 // Ejemplo que debería funcionar
-// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
-// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/buscador.php?s=camiseta
-//$data = file_get_contents('php://input');
-//$data = json_decode(file_get_contents('php://input'));
-$produto->nome = isset($_GET['s']) ? $_GET['s'] : die();
-// var_dump($data);
-// $produto->id = $data->id;
+// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/buscador.php?s=camiseta"
 
+$produto->nome = isset($_GET['itemName']) ? $_GET['itemName'] : die();
 
-
-//$produto->id = isset($_GET['id']) ? $_GET['id'] : die();
-
-//$data2 = explode("?", $data);
-//var_dump($data); // Null o string vacío
-//var_dump($data2);
-//print_r($data);
-//$produto->id = $data['id'];
 $stmt = $produto->buscar();
 //var_dump($stmt);
 $num = $stmt->num_rows;
@@ -35,7 +22,7 @@ $num = $stmt->num_rows;
 
 //comprobar se hai máis de 0 rexistros devoltos
 if($num>0){
-    echo "num No está vacío";
+    //echo "num No está vacío";
     //array de produtos
     $produtos_arr = array();
     $produtos_arr["records"] = array();
@@ -47,7 +34,7 @@ if($num>0){
             "descricion" => utf8_decode($item["descricion"]),
             "prezo" => $item["prezo"],
             "idCategoria" => $item["idCategoria"],
-            "nomeCategoria" => utf8_decode($item["nomeCategoria"])
+            //"nomeCategoria" => utf8_decode($item["nomeCategoria"])
         );
         array_push($produtos_arr["records"],$item_produto);
     }

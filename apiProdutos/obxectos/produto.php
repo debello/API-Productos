@@ -42,23 +42,21 @@ class Produto{
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . "
         (nome, descricion, prezo) 
         VALUES (?, ?, ?)");
-
         $stmt->bind_param("sss", $this->nome, $this->descricion, $this->prezo);
         $stmt->execute();
         return $stmt;
     }
 
     function ler1() {
-        $query = "SELECT * FROM ".$this->taboa." WHERE id = ".$this->id;
-        $stmt = $this->conn->query($query);
-        // // execución da consulta
-        // $stmt->execute();
-        // $stmt = $this->conn->prepare("SELECT * FROM ".$this->taboa." WHERE id = ?");
-        // $stmt->bind_param("i", $this->id);
-        // $stmt->execute();
-        // // get retrieved row
-        // $row = $stmt->fetch();
-        return $stmt;
+        // $query = "SELECT * FROM ".$this->taboa." WHERE id = ".$this->id;
+        // $stmt = $this->conn->query($query);
+
+        $stmt = $this->conn->prepare(
+           "SELECT * FROM ".$this->taboa." WHERE id = ? ");
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+        $res = $stmt->get_result(); 
+        return $res;  
     }
 
     function actualizar() {
@@ -68,9 +66,7 @@ class Produto{
         //     descricion='".$this->descricion."', 
         //     idCategoria=".$this->idCategoria." 
         //     WHERE id = ".$this->id;
-
         // $stmt = $this->conn->query($query);
-
 
         $stmt = $this->conn->prepare("UPDATE ".$this->taboa." SET 
         nome = ?, 
@@ -78,21 +74,9 @@ class Produto{
         prezo = ?, 
         idCategoria= ? 
         WHERE id = ?");
-
         $stmt->bind_param("ssiii", $this->nome, $this->descricion, $this->prezo, $this->idCategoria, $this->id);
         $stmt->execute();
-        // execución da consulta
-        //$stmt->execute();
-
-
-        /* 
-        UPDATE produtos 
-        SET nome = 'paco', prezo = 999
-        WHERE nome = 'Carteira';
-        */
-
         return $stmt;
-
     }
 
     function borrar() {
@@ -102,21 +86,26 @@ class Produto{
         
         $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
         WHERE id = ?");
-        
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
         return $stmt;
-
     }
 
     function buscar() {
-        $query = "SELECT * FROM ".$this->taboa."
-            WHERE nome LIKE '%".$this->nome."%'";
-        $stmt = $this->conn->query($query);
-        return $stmt; 
-        
-    }
+        // $query = "SELECT * FROM ".$this->taboa."
+        // WHERE nome LIKE '%".$this->nome."%'";
+        // $stmt = $this->conn->query($query);
+        // var_dump($this->nome);
 
+        $stmt = $this->conn->prepare("SELECT * FROM ".$this->taboa."
+         WHERE nome LIKE ? ");
+
+        $thisNome = "%{$this->nome}%";
+        $stmt->bind_param("s", $thisNome);
+        $stmt->execute();
+        $res=$stmt->get_result(); 
+        return $res;  
+    }
 }
 
-$responseCode = [[200 => "Todo OK"],[404 => "Page not found"]];
+?>
