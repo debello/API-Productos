@@ -44,7 +44,7 @@ class Produto{
 
     }
 
-    function crear1(){
+    function lectura1(){
         $query = "SELECT * FROM ".$this->taboa." WHERE id=".$this-id;
         $stmt = $this->conn->query($query);
         // execución da consulta
