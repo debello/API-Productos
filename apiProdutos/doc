@@ -4,12 +4,17 @@
 [O] Actualizar
 [O] Borrar
 [O] Buscador
-[-] SQL Injection Free on read()
-[-] SQL Injection on rest
+[O] SQL Injection Free on read()
+
+[X] actualizacion.php : No indica si el elemento(id) no existe
+[X] lectura1.php : tras Prepared Statements no recibe $num_rows (0)
+
+[-] SQL Injection on rest (4/6)
 [-] Server messages at 3/6
 [-] Server messages at 6/6
 [-]
 [-] CRUD en categorias.php
+
 [O] Documentacion de Recursos y Métodos (Arquitectura)
 -----------------------------------------------------------------------
 

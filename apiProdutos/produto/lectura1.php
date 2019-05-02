@@ -25,7 +25,9 @@ $produto->id = isset($_GET['id']) ? $_GET['id'] : die();
 //$produto->id = $data['id'];
 $stmt = $produto->ler1();
 $num = $stmt->num_rows;
-
+var_dump($produto->id); // 2
+echo "<br>vardump num</br>";
+var_dump($num); // 0
 // comprobar se hai máis de 0 rexistros devoltos
 if($num>0){
     // array de produtos
@@ -38,8 +40,8 @@ if($num>0){
             "nome" => utf8_decode($item["nome"]),
             "descricion" => utf8_decode($item["descricion"]),
             "prezo" => $item["prezo"],
-            "idCategoria" => $item["idCategoria"],
-            "nomeCategoria" => utf8_decode($item["nomeCategoria"])
+            // "idCategoria" => $item["idCategoria"],
+            // "nomeCategoria" => utf8_decode($item["nomeCategoria"])
         );
         array_push($produtos_arr["records"],$item_produto);
     }

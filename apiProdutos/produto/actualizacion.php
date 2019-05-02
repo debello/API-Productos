@@ -12,7 +12,8 @@ $produto = new Produto($conn);
 
 // Ejemplo que debería funcionar
 // curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
-// curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":150,\"descricion\":\"A mellor almofada do mercado\",\"idCategoria\":2,\"id\":61}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
+// curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"descricion\":\"A mellor almofada do mercado\",\"prezo\":150,\"idCategoria\":2,\"id\":61}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
+// [!!!] Especificar una ID que ya exista
 //$data = file_get_contents('php://input');
 $data = json_decode(file_get_contents('php://input'));
 var_dump($data);
@@ -32,14 +33,14 @@ $produto->idCategoria = $data->idCategoria;
 //var_dump($data2);
 //print_r($data);
 //$produto->id = $data['id'];
-$stmt = $produto->consultarID();
+$stmt = $produto->actualizar();
 //var_dump($stmt);
-$num = $stmt->num_rows;
+//$num = $stmt->num_rows;
 if ($stmt) {
-    echo "insertao";
+    echo "Actualizado con éxito";
 }
 else {
-    echo "no insertao";
+    echo "No Actualizado";
 }
 
 // comprobar se hai máis de 0 rexistros devoltos
