@@ -8,11 +8,12 @@
         [o] actualizacion.php : No indica si el elemento(id) no existe
         [o] lectura1.php : tras Prepared Statements no recibe $num_rows (0)
 [O] SQL Injection on rest (6/6)
+[O] Documentacion de Recursos y Métodos (Arquitectura)
+
 [-] Server messages at 3/6
 [-] Server messages at 6/6
 [-] CRUD en categorias.php
 
-[O] Documentacion de Recursos y Métodos (Arquitectura)
 -----------------------------------------------------------------------
 
 https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
@@ -38,16 +39,19 @@ produto/
 // Buscar (Todo)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura.php"
 
+// Buscar (Uno, según Id)
+curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
+
+// Buscar (Uno, según nome)
+curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/buscador.php?s=camiseta"
+
 // Crear
 curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
 
 // Borrar
 curl -v -X POST -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php"
 
-// Buscar (1 producto)
-curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
-
-// Actualizar
+// Actualizar (Usar un id existente)
 curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":150,\"descricion\":\"A mellor almofada do mercado\",\"idCategoria\":2,\"id\":61}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
 
 
