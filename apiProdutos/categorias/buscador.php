@@ -9,7 +9,7 @@ $conn = $conexion->getConexion();
 $categoria = new categoria($conn);
 
 // Ejemplo que debería funcionar
-// curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/buscador.php?s=camiseta"
+// curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/buscador.php?itemName=Peliculas"
 $categoria->nome = isset($_GET['itemName']) ? $_GET['itemName'] : die();
 $stmt = $categoria->buscar();
 $num = $stmt->num_rows;
@@ -23,9 +23,8 @@ if($num>0){
             "id" => $item["id"],
             "nome" => utf8_decode($item["nome"]),
             "descricion" => utf8_decode($item["descricion"]),
-            "prezo" => $item["prezo"],
-            "idCategoria" => $item["idCategoria"],
-            //"nomeCategoria" => utf8_decode($item["nomeCategoria"])
+            "creada" => utf8_decode($item["creada"]),
+            "modificada" => utf8_decode($item["modificada"]),
         );
         array_push($categorias_arr["records"],$item_categoria);
     }

@@ -15,8 +15,7 @@ $categoria = new categoria($conn);
 $data = json_decode(file_get_contents('php://input'));
 
 if (empty($data->id) || empty($data->nome) || 
-    empty($data->descricion) || empty($data->prezo) || 
-    empty($data->idCategoria)) {
+    empty($data->descricion)) {
         
         http_response_code(503);
         echo json_encode(["mensaje" => "Datos insuficientes."]);
@@ -27,8 +26,7 @@ else {
     $categoria->id = $data->id;
     $categoria->nome = $data->nome;
     $categoria->descricion = $data->descricion;
-    $categoria->prezo = $data->prezo;
-    $categoria->idCategoria = $data->idCategoria;
+
     
     $stmt = $categoria->actualizar();
     var_dump($data);

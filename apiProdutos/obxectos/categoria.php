@@ -23,7 +23,7 @@ class Categoria{
     function ler() {
         // consulta select all
         $query = "SELECT
-                    id, nome, descricion
+                    id, nome, descricion, creada, modificada
                 FROM
                     " . $this->taboa . " 
                 ORDER BY
@@ -37,14 +37,13 @@ class Categoria{
 
     function crear() {
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . "
-        (nome, descricion, prezo) 
-        VALUES (?, ?, ?)");
+        (nome, descricion) 
+        VALUES (?, ?)");
 
-        $this->nome=htmlspecialchars(strip_tags($this->nome));
-        $this->prezo=htmlspecialchars(strip_tags($this->prezo));
-        $this->descricion=htmlspecialchars(strip_tags($this->descricion));
+        $this->nome = htmlspecialchars(strip_tags($this->nome));
+        $this->descricion = htmlspecialchars(strip_tags($this->descricion));
 
-        $stmt->bind_param("sss", $this->nome, $this->descricion, $this->prezo);
+        $stmt->bind_param("ss", $this->nome, $this->descricion);
         $stmt->execute();
         return $stmt;
     }
@@ -74,19 +73,14 @@ class Categoria{
 
         $stmt = $this->conn->prepare("UPDATE ".$this->taboa." SET 
         nome = ?, 
-        descricion= ?, 
-        prezo = ?, 
-        idCategoria= ? 
+        descricion = ? 
         WHERE id = ?");
 
         $this->nome=htmlspecialchars(strip_tags($this->nome));
-        $this->prezo=htmlspecialchars(strip_tags($this->prezo));
         $this->descricion=htmlspecialchars(strip_tags($this->descricion));
-        $this->idCategoria=htmlspecialchars(strip_tags($this->idCategoria));
         $this->id=htmlspecialchars(strip_tags($this->id));
 
-        $stmt->bind_param("ssiii", $this->nome, $this->descricion, 
-            $this->prezo, $this->idCategoria, $this->id);
+        $stmt->bind_param("ssi", $this->nome, $this->descricion, $this->id);
         $stmt->execute();
         return $stmt;
     }

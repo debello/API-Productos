@@ -23,9 +23,8 @@ if($num>0){
             "id" => $item["id"],
             "nome" => utf8_decode($item["nome"]),
             "descricion" => utf8_decode($item["descricion"]),
-            "prezo" => $item["prezo"],
-            // "idCategoria" => $item["idCategoria"],
-            // "nomeCategoria" => utf8_decode($item["nomeCategoria"])
+            "creada" => utf8_decode($item["creada"]),
+            "modificada" => utf8_decode($item["modificada"]),
         );
         array_push($categorias_arr["records"],$item_categoria);
     }

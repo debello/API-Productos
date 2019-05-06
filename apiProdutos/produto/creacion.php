@@ -16,18 +16,6 @@ $data = json_decode(file_get_contents('php://input'));
 //curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
 
 // En forma de Objeto
-if (!empty($data->nome) && !empty($data->descricion) && !empty($data->prezo)) {
-
-    $produto->nome = $data->nome;
-    $produto->descricion = $data->descricion;
-    $produto->prezo = $data->prezo;
-}
-else {
-    http_response_code(503);
-    echo json_encode(["mensaje" => "Datos insuficientes."]);
-}
-
-
 if (empty($data->nome) || empty($data->descricion) || empty($data->prezo)) {
         
     http_response_code(503);

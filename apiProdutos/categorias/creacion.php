@@ -16,19 +16,8 @@ $data = json_decode(file_get_contents('php://input'));
 //curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/categorias/creacion.php"
 
 // En forma de Objeto
-if (!empty($data->nome) && !empty($data->descricion) && !empty($data->prezo)) {
 
-    $categoria->nome = $data->nome;
-    $categoria->descricion = $data->descricion;
-    $categoria->prezo = $data->prezo;
-}
-else {
-    http_response_code(503);
-    echo json_encode(["mensaje" => "Datos insuficientes."]);
-}
-
-
-if (empty($data->nome) || empty($data->descricion) || empty($data->prezo)) {
+if (empty($data->nome) || empty($data->descricion)) {
         
     http_response_code(503);
     echo json_encode(["mensaje" => "Datos insuficientes."]);
@@ -37,7 +26,6 @@ else {
 
     $categoria->nome = $data->nome;
     $categoria->descricion = $data->descricion;
-    $categoria->prezo = $data->prezo;
     $stmt = $categoria->crear();
     var_dump($data);
     
