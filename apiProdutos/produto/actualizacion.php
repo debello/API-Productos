@@ -13,21 +13,34 @@ $produto = new Produto($conn);
 // [!!!] Especificar una ID que ya exista
 
 $data = json_decode(file_get_contents('php://input'));
-var_dump($data);
-$produto->id = $data->id;
-$produto->nome = $data->nome;
-$produto->prezo = $data->prezo;
-$produto->descricion = $data->descricion;
-$produto->idCategoria = $data->idCategoria;
-$stmt = $produto->actualizar();
 
-if ($stmt) {
-    http_response_code(200);
-    echo "Producto Actualizado con éxito.";
+if (empty($data->id) || empty($data->nome) || 
+    empty($data->descricion) || empty($data->prezo) || 
+    empty($data->idCategoria)) {
+        
+        http_response_code(503);
+        echo json_encode(["mensaje" => "Datos insuficientes."]);
+
 }
 else {
-    http_response_code(404);
-    echo "Error. Producto no encontrado.";
+
+    $produto->id = $data->id;
+    $produto->nome = $data->nome;
+    $produto->descricion = $data->descricion;
+    $produto->prezo = $data->prezo;
+    $produto->idCategoria = $data->idCategoria;
+    
+    $stmt = $produto->actualizar();
+    var_dump($data);
+    
+    if ($stmt) {
+        http_response_code(200);
+        echo "Producto Actualizado con exito.";
+    }
+    else {
+        http_response_code(404);
+        echo "Error. Producto no encontrado.";
+    }
 }
 
 ?>

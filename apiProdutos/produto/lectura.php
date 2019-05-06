@@ -9,7 +9,7 @@ $conn = $conexion->getConexion();
 $produto = new Produto($conn);
 
 // Ejemplo
-// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura.php"
+//  curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura.php"
 $stmt = $produto->ler();
 $num = $stmt->num_rows;
 

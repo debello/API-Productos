@@ -8,10 +8,12 @@ include '../obxectos/produto.php';
 
 $conexion = new BaseDatos;
 $conn = $conexion->getConexion();
-// inicializar o obxecto produto
 $produto = new Produto($conn);
 
 $data = json_decode(file_get_contents('php://input'));
+
+// Crear
+//curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
 
 // En forma de Objeto
 if (!empty($data->nome) && !empty($data->descricion) && !empty($data->prezo)) {
@@ -25,17 +27,30 @@ else {
     echo json_encode(["mensaje" => "Datos insuficientes."]);
 }
 
-$stmt = $produto->crear();
 
-if ($stmt){
-     http_response_code(201);
-     echo json_encode(["mensaje" => "Datos insertados con exito"]);
+if (empty($data->nome) || empty($data->descricion) || empty($data->prezo)) {
+        
+    http_response_code(503);
+    echo json_encode(["mensaje" => "Datos insuficientes."]);
 }
 else {
-    http_response_code(404);
-    echo json_encode(
-        array("message" => "Non se atoparon produtos.")
-    );
+
+    $produto->nome = $data->nome;
+    $produto->descricion = $data->descricion;
+    $produto->prezo = $data->prezo;
+    $stmt = $produto->crear();
+    var_dump($data);
+    
+    if ($stmt){
+        http_response_code(201);
+        echo json_encode(["mensaje" => "Datos insertados con exito"]);
+    }
+    else {
+        http_response_code(404);
+        echo json_encode(
+            array("message" => "Non se atoparon produtos.")
+        );
+    }
 }
 
 ?>

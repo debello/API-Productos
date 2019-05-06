@@ -12,17 +12,32 @@ $produto = new Produto($conn);
 // Ejemplo que debería funcionar
 // curl -v -X POST -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php"
 $data = json_decode(file_get_contents('php://input'));
-$produto->id = $data->id;
-$stmt = $produto->borrar();
 
-if ($stmt) {
-    http_response_code(200);
-    echo "Producto Borrado con éxito.";
+if (empty($data->id)) {
+        
+        http_response_code(503);
+        echo json_encode(["mensaje" => "Datos insuficientes."]);
+
 }
 else {
-    http_response_code(404);
-    echo "Error. Producto no encontrado.";
+
+    $produto->id = $data->id;
+    $stmt = $produto->borrar();
+    var_dump($data);
+    
+    if ($stmt) {
+        http_response_code(200);
+        echo "Producto Borrado con exito.";
+    }
+    else {
+        http_response_code(404);
+        echo "Error. Producto no encontrado.";
+    }
 }
+
+
+
+
 
 ?>
 
