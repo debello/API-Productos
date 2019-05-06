@@ -9,10 +9,13 @@
         [o] lectura1.php : tras Prepared Statements no recibe $num_rows (0)
 [O] SQL Injection on rest (6/6)
 [O] Documentacion de Recursos y Métodos (Arquitectura)
-
 [O] Server messages at 3/6
 [O] Server messages at 6/6
+
 [-] CRUD en categorias.php
+        [-] Lectura, lectura1
+        [-] Buscador, actualizacion
+        [-] Creacion, Borrado
 
 -----------------------------------------------------------------------
 
