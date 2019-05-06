@@ -42,6 +42,11 @@ class Produto{
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . "
         (nome, descricion, prezo) 
         VALUES (?, ?, ?)");
+
+        $this->nome=htmlspecialchars(strip_tags($this->nome));
+        $this->prezo=htmlspecialchars(strip_tags($this->prezo));
+        $this->descricion=htmlspecialchars(strip_tags($this->descricion));
+
         $stmt->bind_param("sss", $this->nome, $this->descricion, $this->prezo);
         $stmt->execute();
         return $stmt;
@@ -53,6 +58,8 @@ class Produto{
 
         $stmt = $this->conn->prepare(
            "SELECT * FROM ".$this->taboa." WHERE id = ? ");
+           
+        $this->id=htmlspecialchars(strip_tags($this->id));
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
         $res = $stmt->get_result(); 
@@ -74,7 +81,15 @@ class Produto{
         prezo = ?, 
         idCategoria= ? 
         WHERE id = ?");
-        $stmt->bind_param("ssiii", $this->nome, $this->descricion, $this->prezo, $this->idCategoria, $this->id);
+
+        $this->nome=htmlspecialchars(strip_tags($this->nome));
+        $this->prezo=htmlspecialchars(strip_tags($this->prezo));
+        $this->descricion=htmlspecialchars(strip_tags($this->descricion));
+        $this->idCategoria=htmlspecialchars(strip_tags($this->idCategoria));
+        $this->id=htmlspecialchars(strip_tags($this->id));
+
+        $stmt->bind_param("ssiii", $this->nome, $this->descricion, 
+            $this->prezo, $this->idCategoria, $this->id);
         $stmt->execute();
         return $stmt;
     }
@@ -86,6 +101,8 @@ class Produto{
         
         $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
         WHERE id = ?");
+
+        $this->id=htmlspecialchars(strip_tags($this->id));
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
         return $stmt;
@@ -100,10 +117,11 @@ class Produto{
         $stmt = $this->conn->prepare("SELECT * FROM ".$this->taboa."
          WHERE nome LIKE ? ");
 
+        $this->nome=htmlspecialchars(strip_tags($this->nome));
         $thisNome = "%{$this->nome}%";
         $stmt->bind_param("s", $thisNome);
         $stmt->execute();
-        $res=$stmt->get_result(); 
+        $res = $stmt->get_result(); 
         return $res;  
     }
 }
