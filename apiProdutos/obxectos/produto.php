@@ -1,5 +1,7 @@
 <?php
 
+// echo $err_messages[http_response_code()];
+
 class Produto{
     // conexión coa táboa da base de datos
     private $conn;

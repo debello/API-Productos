@@ -17,8 +17,8 @@ $data = json_decode(file_get_contents('php://input'));
 if (empty($data->id) || empty($data->nome) || 
     empty($data->descricion)) {
         
-        http_response_code(503);
-        echo json_encode(["mensaje" => "Datos insuficientes."]);
+    http_response_code(503);
+    echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
 
 }
 else {
@@ -33,11 +33,11 @@ else {
     
     if ($stmt) {
         http_response_code(200);
-        echo "Producto Actualizado con exito.";
+        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
     }
     else {
         http_response_code(404);
-        echo "Error. Producto no encontrado.";
+        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
     }
 }
 

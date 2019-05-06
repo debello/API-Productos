@@ -32,6 +32,14 @@ produto/
         lectura.php
         lectura1.php
 
+categorias/
+        actualizacion.php
+        borrado.php
+        buscador.php
+        creacion.php
+        lectura.php
+        lectura1.php
+
 
 
 // PRODUTOS
@@ -87,6 +95,7 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
         [O] actualizacion.php : No indica si el elemento(id) no existe
         [O] lectura1.php : tras Prepared Statements no recibe $num_rows (0)
         [O]
+
 [O] Documentacion de Recursos y Métodos (Arquitectura)
 [O] Server Messages
         [O] 3/6
@@ -97,6 +106,12 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
         [O] 4/6
         [O] 6/6
 
+[-] Revisión
+        [-] Mostrar todas las columnas (Creado, Modificado)
+                [-] En Produtos
+                [-] En Categorias
+
+[-] .htaccess
 
 Recursos y bibliografía
         https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html

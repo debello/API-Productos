@@ -30,12 +30,11 @@ if($num>0) {
     }
     http_response_code(200);
     echo json_encode($categorias_arr,JSON_PRETTY_PRINT);
+    echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
 }
 else {
   http_response_code(404);
-  echo json_encode(
-      array("message" => "Non se atoparon categorias.")
-  );
+  echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
 }
 
 ?>

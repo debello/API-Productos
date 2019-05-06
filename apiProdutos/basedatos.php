@@ -14,7 +14,7 @@ class BaseDatos{
         if ($this->conn->connect_error) {
             die("Fallou a conexión coa base de datos: " . $this->conn->connect_error);
         }
-        echo "Conexión coa base de datos realizada";
+        //echo "Conexión coa base de datos realizada";
         return $this->conn;
     }
     //pechar a conexión coa base de datos
@@ -23,4 +23,10 @@ class BaseDatos{
     }
 }
 
+$err_messages = [
+    200 => 'A solicitude tramitouse con exito',    
+    203 => 'Peticion realizada con exito',
+    404 => 'O produto non existe na base de datos', 
+    503 => 'Erro no procesamento da peticion'
+    ];
 ?>
