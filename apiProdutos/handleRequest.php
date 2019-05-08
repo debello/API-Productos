@@ -7,22 +7,24 @@
             $paths = explode('/', $this->paths($uri));
             array_shift($paths); // Hack; get rid of initials empty string
             $resource = array_shift($paths);
-        
-            if ($resource == 'clientes') {
-                $name = array_shift($paths);
-
-                if (empty($name)) {
-                    $this->handle_base($method);
-                } else {
-                    $this->handle_name($method, $name);
-                }
-            
-            } else {
-                // S? se aceptan recursos desde 'clientes'
-                header('HTTP/1.1 404 Not Found');
-            }
         }
-            
+        
+        //     if ($resource == 'clientes') {
+        //         $name = array_shift($paths);
+
+        //         if (empty($name)) {
+        //             $this->handle_base($method);
+        //         } 
+        //         else {
+        //             $this->handle_name($method, $name);
+        //         }
+        //     } 
+        //     else {
+        //         // S? se aceptan recursos desde 'clientes'
+        //         header('HTTP/1.1 404 Not Found');
+        //     }
+        // }
+
         private function handle_base($method) {
             switch($method) {
             case 'GET':
@@ -38,15 +40,15 @@
         private function handle_name($method, $name) {
             switch($method) {
             case 'PUT':
-                include 'actualizacion.php';
+                include 'produto/actualizacion.php';
                 break;
 
             case 'DELETE':
-                include 'borrado.php';
+                include 'produto/borrado.php';
                 break;
 
             case 'GET':
-                include 'lectura1.php';
+                include 'produto/lectura1.php';
                 break;
 
             default:
