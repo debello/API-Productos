@@ -22,12 +22,34 @@ class Categoria{
     // lectura de produtos
     function ler() {
         // consulta select all
-        $query = "SELECT
-                    id, nome, descricion, creada, modificada
-                FROM
-                    " . $this->taboa . " 
-                ORDER BY
-                    creada DESC";
+            $query = "SELECT
+            p.id as ID, c.id as idCategoria, c.nome, c.descricion, c.creada, c.modificada
+        FROM
+            produtos p
+            LEFT JOIN
+                categorias c
+                    ON p.idCategoria = c.id
+        ORDER BY
+            p.creado DESC";
+
+
+
+        
+        //             id as idCategoria, nome, descricion, creada, modificada
+        //         FROM
+        //             " . $this->taboa . " 
+        //         ORDER BY
+        //             creada DESC";
+
+                //     "SELECT
+                //     c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
+                // FROM
+                //     " . $this->table_name . " p
+                //     LEFT JOIN
+                //         categories c
+                //             ON p.category_id = c.id
+                // ORDER BY
+                //     p.created DESC";
         // prepara a consulta
         $stmt = $this->conn->query($query);
         // execución da consulta

@@ -1,11 +1,15 @@
 Recurso     Método-HTTP        Ruta Real                            Funcion
 -------     -----------         --------                            ---------
-Produtos        GET             /produto/lectura.php            Ver todas las entradas
-                GET             /produto/lectura1.php           Ver 1 entrada según ID
+Produtos        
+                GET             /produto/lectura.php            Ver todas las entradas
                 GET             /produto/buscador.php           Ver 1 entrada según 'nome'
                 POST            /produto/creacion.php           Crea unha entrada(produto)
                 PUT             /produto/actualizacion.php      Actualiza los valores de un produto
                 DELETE          /produto/borrado.php            Borra unha entrada según o id
+
+produtos/{id}
+                GET             /produto/lectura1.php           Ver 1 entrada según ID
+                
 -----------------------------------------------------------------------------------------------------|
 Categorias      GET             /categorias/lectura.php          Ver todas las entradas
                 GET             /categorias/lectura1.php         Ver 1 entrada según ID

@@ -1,5 +1,4 @@
 RewriteEngine On
-RewriteBase /
-options +FollowSymLinks
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^tienda(.*) /produto/lectura.php/$0 [L]
+RewriteRule ^produtos?$ produto/lectura.php [NC,L]
+RewriteRule ^produtos/([0-9]+)$ produto/lectura1.php?id=$1 [NC,L]  
+##RewriteRule ^categorias/([0-9]+)$ produto/lectura1.php?id=$1 [NC,L]  

@@ -20,7 +20,8 @@ if($num>0) {
     while ($item=$stmt->fetch_assoc()) {
         //echo "nome categoria:".$item["nome"];
         $item_categoria=array(
-            "id" => $item["id"],
+            "id" => $item["p.id"],
+            "idCategoria" => $item["c.id"],
             "nome" => utf8_decode($item["nome"]),
             "descricion" => utf8_decode($item["descricion"]),
             "creada" => utf8_decode($item["creada"]),
