@@ -9,7 +9,7 @@ Produtos
 
 produtos/{id}
                 GET             /produto/lectura1.php           Ver 1 entrada según ID
-                
+
 -----------------------------------------------------------------------------------------------------|
 Categorias      GET             /categorias/lectura.php          Ver todas las entradas
                 GET             /categorias/lectura1.php         Ver 1 entrada según ID
@@ -115,6 +115,9 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
         [-] Mostrar todas las columnas (Creado, Modificado)
                 [-] En Produtos
                 [-] En Categorias
+[-] htaccess
+        [O] GET producto y productos{id}
+        [-] GET POST... ?{id} según se escoja
 
 
 
