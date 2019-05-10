@@ -1,30 +1,32 @@
 <?php
+/* Funciona
+curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2"
+*/
     class Servidor {
+
         public function serve() {
             
             $uri = $_SERVER['REQUEST_URI'];
             $method = $_SERVER['REQUEST_METHOD'];
-            $paths = explode('/', $this->paths($uri));
-            array_shift($paths); // Hack; get rid of initials empty string
-            $resource = array_shift($paths);
+            //$paths = explode('/', $this->paths($uri));            array_shift($paths); // Hack; get rid of initials empty string
+            //$resource = array_shift($paths);
+
+            // if ($resource == 'produtos') {
+            //     $name = array_shift($paths);
+                
+            //     if (empty($name)) {
+            //         $this->handle_base($method);
+            //     } 
+            //     else {
+                    $this->handle_name($method, $name);
+            //     }  
+            // } 
+            // else {
+            //     // S? se aceptan recursos desde 'clientes'
+            //     header('HTTP/1.1 404 Not Found');
+            // }
         }
-        
-        //     if ($resource == 'clientes') {
-        //         $name = array_shift($paths);
-
-        //         if (empty($name)) {
-        //             $this->handle_base($method);
-        //         } 
-        //         else {
-        //             $this->handle_name($method, $name);
-        //         }
-        //     } 
-        //     else {
-        //         // S? se aceptan recursos desde 'clientes'
-        //         header('HTTP/1.1 404 Not Found');
-        //     }
-        // }
-
+                
         private function handle_base($method) {
             switch($method) {
             case 'GET':
@@ -57,5 +59,30 @@
                 break;
             }
         }
+    //}
+            // if ($name && $method) {
+            //     handle_name($method, $name);
+            // }
+            // else if ($method) {
+            //     handle_base($method);
+            // }
+            // else {
+            //     echo 'ERROR con el HandleRequest';
+            // }
+
+
     }
+
+$handle = new Servidor;
+$conec = $handle->serve();
+
+
+// $conexion = new BaseDatos;
+// $conn = $conexion->getConexion();
+// $produto = new Produto($conn);
+
+
+
+
+        
 ?>

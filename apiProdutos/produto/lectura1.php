@@ -1,8 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-include '../basedatos.php';
-include '../obxectos/produto.php';
+include 'basedatos.php';
+include 'obxectos/produto.php';
 
 $conexion = new BaseDatos;
 $conn = $conexion->getConexion();

@@ -87,6 +87,15 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+HTTP Request desde handleRequest.php
+/* Funciona
+curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2"
+*/
+
+
+
+
+
 [O] CRUD (Create, Read, Read-Id, Read-Nome, Update, Delete)
         [O] Leer todo
         [O] Crear producto
