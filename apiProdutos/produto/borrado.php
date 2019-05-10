@@ -1,5 +1,4 @@
 <?php
-// cabeceiras necesarias
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 include 'basedatos.php';
@@ -12,7 +11,7 @@ $produto = new Produto($conn);
 // Ejemplo que debería funcionar
 // curl -v -X POST -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php"
 
-$data->id = isset($_GET['id']) ? $_GET['id'] : die();
+$data->id = $_GET['id'];
 
 if (empty($data->id)) {
         

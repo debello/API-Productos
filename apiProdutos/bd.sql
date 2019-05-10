@@ -30,6 +30,8 @@ CREATE TABLE IF NOT EXISTS `produtos` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=65;
 
+
+TRUNCATE TABLE produtos;
 -- Insertamos datos na tabla Productos
 INSERT INTO `produtos` (`id`, `nome`, `descricion`, `prezo`, `idCategoria`, `creado`, `modificado`) VALUES
 (1, 'LG K40', 'O meu primeiro teléfono intelixente!', '336', 3, '2019-03-01 01:12:26', '2019-03-03 17:12:26'),
