@@ -24,8 +24,10 @@ if($num>0){
             "nome" => utf8_decode($item["nome"]),
             "descricion" => utf8_decode($item["descricion"]),
             "prezo" => $item["prezo"],
-            // "idCategoria" => $item["idCategoria"],
-            // "nomeCategoria" => utf8_decode($item["nomeCategoria"])
+            "idCategoria" => $item["idCategoria"],
+            "nomeCategoria" => utf8_decode($item["nomeCategoria"]),
+            "creado" => $item["creado"],
+            "modificado" => $item["modificado"]
         );
         array_push($produtos_arr["records"],$item_produto);
     }

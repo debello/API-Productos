@@ -9,7 +9,7 @@ $conn = $conexion->getConexion();
 $produto = new Produto($conn);
 
 // Ejemplo que debería funcionar
-// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/buscador.php?s=camiseta"
+// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/buscador.php?itemName=camiseta"
 $produto->nome = isset($_GET['itemName']) ? $_GET['itemName'] : die();
 $stmt = $produto->buscar();
 $num = $stmt->num_rows;
@@ -25,7 +25,9 @@ if($num>0){
             "descricion" => utf8_decode($item["descricion"]),
             "prezo" => $item["prezo"],
             "idCategoria" => $item["idCategoria"],
-            //"nomeCategoria" => utf8_decode($item["nomeCategoria"])
+            "nomeCategoria" => utf8_decode($item["nomeCategoria"]),
+            "creado" => $item["creado"],
+            "modificado" => $item["modificado"]
         );
         array_push($produtos_arr["records"],$item_produto);
     }

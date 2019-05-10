@@ -69,28 +69,26 @@ curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":150,\"descricion\":\"A
 // CATEGORIAS
 // Buscar (Todo)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/lectura.php"
-
 // Buscar (Uno, según Id)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/lectura1.php?id=2"
-
 // Buscar (Uno, según nome)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/buscador.php?itemName=Peliculas"
 
 // Crear
 curl -v -X POST -d "{\"nome\":\"Animales\",\"descricion\":\"Seres vivos del reino animal\"}" "http://localhost:8080/servizoweb/apiprodutos/categorias/creacion.php"
-
 // Borrar
 curl -v -X DELETE -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/categorias/borrado.php"
-
 // Actualizar (Usar un id existente)
 curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\":6}" "http://localhost:8080/servizoweb/apiprodutos/categorias/actualizacion.php"
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 HTTP Request desde handleRequest.php
-/* Funciona
+
 curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2"
-*/
+curl -v -X DELETE "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2"
+curl -v -X PUT -d "{\"nome\":\"Almofada MAXICA\",\"descricion\":\"A mellor almofada do mercado\",\"prezo\":150,\"idCategoria\":2,\"id\":2}" "http://localhost:8080/servizoweb/apiprodutos/handleRequest.php"
+
 
 
 

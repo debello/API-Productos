@@ -13,8 +13,8 @@ class Produto{
     public $prezo;
     public $idCategoria;
     public $nomeCategoria;
-    public $creado;
-    public $oldId;
+    //public $creado;
+    //public $oldId;
 
     // constructor con $db como conexión coa base de datos
     public function __construct($db) {
@@ -25,7 +25,7 @@ class Produto{
     function ler() {
         // consulta select all
         $query = "SELECT
-                    c.nome as nomeCategoria, p.id, p.nome, p.descricion, p.prezo, p.idCategoria, p.creado
+                    c.nome as nomeCategoria, p.id, p.nome, p.descricion, p.prezo, p.idCategoria, p.creado, p.modificado
                 FROM
                     " . $this->taboa . " p
                     LEFT JOIN
@@ -59,7 +59,16 @@ class Produto{
         // $stmt = $this->conn->query($query);
 
         $stmt = $this->conn->prepare(
-           "SELECT * FROM ".$this->taboa." WHERE id = ? ");
+            "SELECT
+            c.nome as nomeCategoria, p.id, p.nome, p.descricion, p.prezo, p.idCategoria, p.creado, p.modificado
+        FROM
+            " . $this->taboa . " p
+            LEFT JOIN
+                categorias c
+                    ON p.idCategoria = c.id
+            WHERE p.id = ?
+            ORDER BY p.creado DESC");
+              
            
         $this->id=htmlspecialchars(strip_tags($this->id));
         $stmt->bind_param("i", $this->id);
@@ -116,8 +125,15 @@ class Produto{
         // $stmt = $this->conn->query($query);
         // var_dump($this->nome);
 
-        $stmt = $this->conn->prepare("SELECT * FROM ".$this->taboa."
-         WHERE nome LIKE ? ");
+        $stmt = $this->conn->prepare("SELECT
+        c.nome as nomeCategoria, p.id, p.nome, p.descricion, p.prezo, p.idCategoria, p.creado, p.modificado
+    FROM
+        " . $this->taboa . " p
+        LEFT JOIN
+            categorias c
+                ON p.idCategoria = c.id
+        WHERE p.nome LIKE ?
+        ORDER BY p.creado DESC");
 
         $this->nome=htmlspecialchars(strip_tags($this->nome));
         $thisNome = "%{$this->nome}%";
