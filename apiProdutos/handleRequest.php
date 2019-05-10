@@ -18,7 +18,7 @@ curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2
             //         $this->handle_base($method);
             //     } 
             //     else {
-                    $this->handle_name($method, $name);
+                    $this->handle_name($method);
             //     }  
             // } 
             // else {
@@ -39,7 +39,7 @@ curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2
             }
         }
 
-        private function handle_name($method, $name) {
+        private function handle_name($method) {
             switch($method) {
             case 'PUT':
                 include 'produto/actualizacion.php';
