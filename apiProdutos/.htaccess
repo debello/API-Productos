@@ -1,4 +1,4 @@
 RewriteEngine On
-RewriteRule ^produtos?$ produto/lectura.php [NC,L]
+RewriteRule ^produtos?$ produto/lectura.php [NC,L] 
 RewriteRule ^produtos/([a-zA-Z]+)$ produto/buscador.php?itemName=$1 [NC,L] 
 RewriteRule ^produtos/([0-9]+)$ handleRequest.php?id=$1 [NC,L] 

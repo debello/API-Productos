@@ -1,16 +1,18 @@
-Recurso     Método-HTTP        Ruta Real                            Funcion
--------     -----------         --------                            ---------
+Recurso     Método-HTTP        Ruta Real                        Funcion
+-------     -----------        ---------------------            ----------------------
 Produtos        
                 GET             /produto/lectura.php            Ver todas las entradas
-                GET             /produto/buscador.php           Ver 1 entrada según 'nome'
                 POST            /produto/creacion.php           Crea unha entrada(produto)
+Produtos/{nome}
+                GET             /produto/buscador.php           Ver 1 entrada según 'nome'
+
+Produtos/{id}
+                GET             /produto/lectura1.php?         Ver 1 entrada según ID
                 PUT             /produto/actualizacion.php      Actualiza los valores de un produto
                 DELETE          /produto/borrado.php            Borra unha entrada según o id
 
-produtos/{id}
-                GET             /produto/lectura1.php           Ver 1 entrada según ID
+--------------------------------------------------------------------------------------------------------
 
------------------------------------------------------------------------------------------------------|
 Categorias      GET             /categorias/lectura.php          Ver todas las entradas
                 GET             /categorias/lectura1.php         Ver 1 entrada según ID
                 GET             /categorias/buscador.php         Ver 1 entrada según 'nome'
@@ -23,7 +25,7 @@ Categorias      GET             /categorias/lectura.php          Ver todas las e
 // Arquitectura
 basededatos.php
 bd.sql
-doc
+LEEME
 .htaccess
 objetos/
         producto.php
@@ -50,49 +52,45 @@ categorias/
 // Buscar (Todo)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura.php"
 
-// Buscar (Uno, según Id)
-curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura1.php?id=2"
-
 // Buscar (Uno, según nome)
-curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/buscador.php?itemName=camiseta"
+curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/camiseta"
 
 // Crear
 curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
 
+
+// Buscar (Uno, según Id)
+curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
 // Borrar
-curl -v -X DELETE -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php"
+curl -v -X DELETE "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
 
 // Actualizar (Usar un id existente)
-curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":150,\"descricion\":\"A mellor almofada do mercado\",\"idCategoria\":2,\"id\":60}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
+curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"prezo\":150,\"descricion\":\"A mellor almofada do mercado\",\"idCategoria\":2}" "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
+
 
 
 // CATEGORIAS
 // Buscar (Todo)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/lectura.php"
+
 // Buscar (Uno, según Id)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/lectura1.php?id=2"
+
 // Buscar (Uno, según nome)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/categorias/buscador.php?itemName=Peliculas"
 
 // Crear
 curl -v -X POST -d "{\"nome\":\"Animales\",\"descricion\":\"Seres vivos del reino animal\"}" "http://localhost:8080/servizoweb/apiprodutos/categorias/creacion.php"
+
 // Borrar
 curl -v -X DELETE -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/categorias/borrado.php"
+
 // Actualizar (Usar un id existente)
 curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\":6}" "http://localhost:8080/servizoweb/apiprodutos/categorias/actualizacion.php"
 
+
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-HTTP Request desde handleRequest.php
-
-curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2"
-curl -v -X DELETE "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2"
-curl -v -X PUT -d "{\"nome\":\"Almofada MAXICA\",\"descricion\":\"A mellor almofada do mercado\",\"prezo\":150,\"idCategoria\":2,\"id\":2}" "http://localhost:8080/servizoweb/apiprodutos/handleRequest.php"
-
-
-
-
-
 
 [O] CRUD (Create, Read, Read-Id, Read-Nome, Update, Delete)
         [O] Leer todo
@@ -118,13 +116,15 @@ curl -v -X PUT -d "{\"nome\":\"Almofada MAXICA\",\"descricion\":\"A mellor almof
         [O] 6/6
         
 [O] Array con los mensajes de error.
-[-] Revisión
+[O] Revisión
         [-] Mostrar todas las columnas (Creado, Modificado)
-                [-] En Produtos
-                [-] En Categorias
-[-] htaccess
+                [O] En Produtos
+                [O] En Categorias
+[O] htaccess
         [O] GET producto y productos{id}
-        [-] GET POST... ?{id} según se escoja
+        [O] GET POST... ?{id} según se escoja
+
+[-] htaccess Categorias
 
 
 
