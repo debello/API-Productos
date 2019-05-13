@@ -1,4 +1,12 @@
 <?php
+
+class data {
+
+}
+
+class dataJSON {
+
+}
 class BaseDatos{
     // especificar as credencias da base de datos
     private $servidor = "localhost";

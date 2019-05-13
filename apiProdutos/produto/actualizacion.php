@@ -14,15 +14,17 @@
     // curl -v -X PUT -d "{\"nome\":\"Almofada extra\",\"descricion\":\"A mellor almofada do mercado\",\"prezo\":150,\"idCategoria\":2,\"id\":61}" "http://localhost:8080/servizoweb/apiprodutos/produto/actualizacion.php"
 
     $dataJSON = json_decode(file_get_contents('php://input'));
+    $dataid = $_GET['id'];
+    var_dump($dataid);
 
-    if (empty($dataJSON->id) || empty($dataJSON->nome) || 
+    if (empty($dataid) || empty($dataJSON->nome) || 
         empty($dataJSON->descricion) || empty($dataJSON->prezo) || 
         empty($dataJSON->idCategoria)) {
             http_response_code(503);
             echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
     }
     else {
-        $produto->id = $dataJSON->id;
+        $produto->id = $dataid;
         $produto->nome = $dataJSON->nome;
         $produto->descricion = $dataJSON->descricion;
         $produto->prezo = $dataJSON->prezo;

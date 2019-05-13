@@ -2,6 +2,7 @@
 /* Funciona
 curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2"
 */
+
     class Servidor {
 
         public function serve() {

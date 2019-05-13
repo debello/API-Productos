@@ -9,7 +9,7 @@ $conn = $conexion->getConexion();
 $produto = new Produto($conn);
 
 // Ejemplo que debería funcionar
-// curl -v -X POST -d "{\"id\":68}"  "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php"
+// curl -v -X DELETE "http://localhost:8080/servizoweb/apiprodutos/produto/borrado.php?id=2"
 
 $data->id = $_GET['id'];
 
