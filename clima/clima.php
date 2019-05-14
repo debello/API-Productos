@@ -12,23 +12,29 @@ $output = curl_exec($cliente);
 //curl_close($cliente); // JSON
 //echo $output; 
 $decoded = json_decode($output); // Objeto
-echo $decoded->datos; // Direccion HTTP que buscamos
+echo $decoded->datos . "<br>"; // Direccion HTTP que buscamos
+$secondURL = $decoded->datos;
+curl_close($cliente);
 
 
-$cliente = curl_init();
-$url="$decoded->datos";
-//establecer as opcións. Hai moitas opcións. Neste caso defínese a URL
-curl_setopt($cliente, CURLOPT_URL, $url);
-curl_setopt($cliente, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($cliente,CURLOPT_HTTPHEADER,array('Accept:application/json',
+$cliente2 = curl_init();
+$url2="$secondURL";
+// //establecer as opcións. Hai moitas opcións. Neste caso defínese a URL
+curl_setopt($cliente2, CURLOPT_URL, $url2);
+curl_setopt($cliente2, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($cliente2,CURLOPT_HTTPHEADER,array('Accept:application/json',
 'Content-type:application/json'));
 //executar con curl_exec()
-$data = curl_exec($cliente);
+$data = curl_exec($cliente2);
 
-$dataDecoded = json_decode($data);
-/**  Variables que queremos mostrar **/
-var_dump($data);
-//var_dump($dataDecoded);
-curl_close($cliente);
+$dataDecoded = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $data), true );
+echo "Hoy: <br>";
+echo $dataDecoded[0]["elaborado"] . "<br>";
+echo $dataDecoded[0]["provincia"] . "<br>";
+echo $dataDecoded[0]["prediccion"]["dia"][0]["temperatura"]["maxima"] . "<br>";
+echo $dataDecoded[0]["prediccion"]["dia"][0]["temperatura"]["minima"] . "<br>";
+//print_r($dataDecoded[0]["origen"]["productor"]);  // !! Agencia Estatal de Metereologia
+
+curl_close($cliente2);
 
 ?>
