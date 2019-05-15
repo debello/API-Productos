@@ -58,6 +58,10 @@
                 /* place-self: center; */
                 align-items: center;
             }
+            #bigbox div p {
+                padding-left: 5px;
+                padding-right: 10px;
+            }
             #bigbox div > * {
                 display: grid;
                 grid-auto-flow: column;
