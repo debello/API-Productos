@@ -32,25 +32,6 @@ class Categoria{
         ORDER BY
             p.creado DESC";
 
-
-
-        
-        //             id as idCategoria, nome, descricion, creada, modificada
-        //         FROM
-        //             " . $this->taboa . " 
-        //         ORDER BY
-        //             creada DESC";
-
-                //     "SELECT
-                //     c.name as category_name, p.id, p.name, p.description, p.price, p.category_id, p.created
-                // FROM
-                //     " . $this->table_name . " p
-                //     LEFT JOIN
-                //         categories c
-                //             ON p.category_id = c.id
-                // ORDER BY
-                //     p.created DESC";
-        // prepara a consulta
         $stmt = $this->conn->query($query);
         // execución da consulta
         //$stmt->execute();
@@ -71,9 +52,6 @@ class Categoria{
     }
 
     function ler1() {
-        // $query = "SELECT * FROM ".$this->taboa." WHERE id = ".$this->id;
-        // $stmt = $this->conn->query($query);
-
         $stmt = $this->conn->prepare(
            "SELECT * FROM ".$this->taboa." WHERE id = ? ");
            
@@ -85,14 +63,6 @@ class Categoria{
     }
 
     function actualizar() {
-        // $query = "UPDATE ".$this->taboa." SET 
-        //     nome ='".$this->nome."', 
-        //     prezo =".$this->prezo.", 
-        //     descricion='".$this->descricion."', 
-        //     idCategoria=".$this->idCategoria." 
-        //     WHERE id = ".$this->id;
-        // $stmt = $this->conn->query($query);
-
         $stmt = $this->conn->prepare("UPDATE ".$this->taboa." SET 
         nome = ?, 
         descricion = ? 
@@ -107,11 +77,7 @@ class Categoria{
         return $stmt;
     }
 
-    function borrar() {
-        // $query = "DELETE FROM ".$this->taboa." 
-        //     WHERE id = ".$this->id;
-        // $stmt = $this->conn->query($query);
-        
+    function borrar() {      
         $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
         WHERE id = ?");
 
@@ -122,11 +88,6 @@ class Categoria{
     }
 
     function buscar() {
-        // $query = "SELECT * FROM ".$this->taboa."
-        // WHERE nome LIKE '%".$this->nome."%'";
-        // $stmt = $this->conn->query($query);
-        // var_dump($this->nome);
-
         $stmt = $this->conn->prepare("SELECT * FROM ".$this->taboa."
          WHERE nome LIKE ? ");
 

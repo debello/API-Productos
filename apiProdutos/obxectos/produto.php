@@ -55,9 +55,6 @@ class Produto{
     }
 
     function ler1() {
-        // $query = "SELECT * FROM ".$this->taboa." WHERE id = ".$this->id;
-        // $stmt = $this->conn->query($query);
-
         $stmt = $this->conn->prepare(
             "SELECT
             c.nome as nomeCategoria, p.id, p.nome, p.descricion, p.prezo, p.idCategoria, p.creado, p.modificado
@@ -78,14 +75,6 @@ class Produto{
     }
 
     function actualizar() {
-        // $query = "UPDATE ".$this->taboa." SET 
-        //     nome ='".$this->nome."', 
-        //     prezo =".$this->prezo.", 
-        //     descricion='".$this->descricion."', 
-        //     idCategoria=".$this->idCategoria." 
-        //     WHERE id = ".$this->id;
-        // $stmt = $this->conn->query($query);
-
         $stmt = $this->conn->prepare("UPDATE ".$this->taboa." SET 
         nome = ?, 
         descricion= ?, 
@@ -106,10 +95,6 @@ class Produto{
     }
 
     function borrar() {
-        // $query = "DELETE FROM ".$this->taboa." 
-        //     WHERE id = ".$this->id;
-        // $stmt = $this->conn->query($query);
-        
         $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
         WHERE id = ?");
 
@@ -120,11 +105,6 @@ class Produto{
     }
 
     function buscar() {
-        // $query = "SELECT * FROM ".$this->taboa."
-        // WHERE nome LIKE '%".$this->nome."%'";
-        // $stmt = $this->conn->query($query);
-        // var_dump($this->nome);
-
         $stmt = $this->conn->prepare("SELECT
         c.nome as nomeCategoria, p.id, p.nome, p.descricion, p.prezo, p.idCategoria, p.creado, p.modificado
     FROM

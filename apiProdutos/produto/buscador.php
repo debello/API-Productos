@@ -1,46 +1,43 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json; charset=UTF-8");
-include '../basedatos.php';
-include '../obxectos/produto.php';
 
-$conexion = new BaseDatos;
-$conn = $conexion->getConexion();
-$produto = new Produto($conn);
+    header("Access-Control-Allow-Origin: *");
+    header("Content-Type: application/json; charset=UTF-8");
+    include '../basedatos.php';
+    include '../obxectos/produto.php';
 
-// Ejemplo que debería funcionar
-// curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/buscador.php?itemName=camiseta"
-$produto->nome = isset($_GET['itemName']) ? $_GET['itemName'] : die();
-$stmt = $produto->buscar();
-$num = $stmt->num_rows;
+    $conexion = new BaseDatos;
+    $conn = $conexion->getConexion();
+    $produto = new Produto($conn);
 
-if($num>0){
-    $produtos_arr = array();
-    $produtos_arr["records"] = array();
+    $produto->nome = isset($_GET['itemName']) ? $_GET['itemName'] : die();
+    $stmt = $produto->buscar();
+    $num = $stmt->num_rows;
 
-    while ($item=$stmt->fetch_assoc()){
-        $item_produto=array(
-            "id" => $item["id"],
-            "nome" => utf8_decode($item["nome"]),
-            "descricion" => utf8_decode($item["descricion"]),
-            "prezo" => $item["prezo"],
-            "idCategoria" => $item["idCategoria"],
-            "nomeCategoria" => utf8_decode($item["nomeCategoria"]),
-            "creado" => $item["creado"],
-            "modificado" => $item["modificado"]
-        );
-        array_push($produtos_arr["records"],$item_produto);
+    if($num>0) {
+        $produtos_arr = array();
+        $produtos_arr["records"] = array();
+
+        while ($item=$stmt->fetch_assoc()) {
+            $item_produto=array(
+                "id" => $item["id"],
+                "nome" => utf8_decode($item["nome"]),
+                "descricion" => utf8_decode($item["descricion"]),
+                "prezo" => $item["prezo"],
+                "idCategoria" => $item["idCategoria"],
+                "nomeCategoria" => utf8_decode($item["nomeCategoria"]),
+                "creado" => $item["creado"],
+                "modificado" => $item["modificado"]
+            );
+            array_push($produtos_arr["records"],$item_produto);
+        }
+        http_response_code(200);
+        echo json_encode($produtos_arr,JSON_PRETTY_PRINT);
+        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
     }
-    // 200 OK
-    http_response_code(200);
-    echo json_encode($produtos_arr,JSON_PRETTY_PRINT);
+    else {
+    http_response_code(404);
     echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
-}
-else{
-  // 404 Not found
-  http_response_code(404);
-  echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
-}
+    }
 
 ?>
 
