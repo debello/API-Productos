@@ -50,7 +50,7 @@ categorias/
 
 // PRODUTOS
 // Buscar (Todo)
-curl -v "http://localhost:8080/servizoweb/apiprodutos/produto/lectura.php"
+curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos"
 
 // Buscar (Uno, según nome)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/camiseta"
@@ -62,6 +62,7 @@ curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada pa
 // Buscar (Uno, según Id)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
 // Borrar
+
 curl -v -X DELETE "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
 
 // Actualizar (Usar un id existente)

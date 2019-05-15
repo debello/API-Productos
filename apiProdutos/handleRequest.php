@@ -9,23 +9,8 @@ curl -v GET "http://localhost:8080/servizoweb/apiProdutos/handleRequest.php?id=2
             
             $uri = $_SERVER['REQUEST_URI'];
             $method = $_SERVER['REQUEST_METHOD'];
-            //$paths = explode('/', $this->paths($uri));            array_shift($paths); // Hack; get rid of initials empty string
-            //$resource = array_shift($paths);
+            $this->handle_name($method);
 
-            // if ($resource == 'produtos') {
-            //     $name = array_shift($paths);
-                
-            //     if (empty($name)) {
-            //         $this->handle_base($method);
-            //     } 
-            //     else {
-                    $this->handle_name($method);
-            //     }  
-            // } 
-            // else {
-            //     // S? se aceptan recursos desde 'clientes'
-            //     header('HTTP/1.1 404 Not Found');
-            // }
         }
                 
         private function handle_base($method) {
