@@ -1,10 +1,11 @@
 
-chcp 65001
-acentos
-avisar si existe ID (creacion, actualizacion)
-creacion
-fecha creado 
-errores mejores definidos
+[-] chcp 65001
+[-] acentos
+[-] avisar si existe ID ( actualizacion)
+[O] actualizacion -> fecha modificado
+[O] creacion
+[O] fecha creado 
+[-] errores mejores definidos
 
 Recurso     Método-HTTP        Ruta Real                        Funcion
 -------     -----------        ---------------------            ----------------------
@@ -64,8 +65,10 @@ curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos"
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/camiseta"
 
 // Crear
-curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
-curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
+// curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
+// curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
+curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\", \"idCategoria\":\"2\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
+
 
 
 // Buscar (Uno, según Id)

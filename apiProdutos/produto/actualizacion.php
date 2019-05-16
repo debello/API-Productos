@@ -15,7 +15,7 @@
         empty($dataJSON->descricion) || empty($dataJSON->prezo) || 
         empty($dataJSON->idCategoria)) {
             http_response_code(400);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
     }
     else {
         $produto->id = $dataid;
@@ -28,11 +28,11 @@
         
         if ($stmt) {
             http_response_code(201);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
         }
         else {
             http_response_code(503);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
             echo " La ID no existe.";
         }
     }

@@ -31,13 +31,13 @@
             array_push($produtos_arr["records"],$item_produto);
         }
         http_response_code(200);
-        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
-        echo json_encode($produtos_arr,JSON_PRETTY_PRINT);
+        echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);
+        echo json_encode($produtos_arr, JSON_UNESCAPED_UNICODE);
     }
     else {
       // 404 Not found
       http_response_code(404);
-      echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+      echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
     }
 
 ?>

@@ -1,7 +1,5 @@
 <?php
 
-// echo $err_messages[http_response_code()];
-
 class Produto{
     // conexión coa táboa da base de datos
     private $conn;
@@ -15,8 +13,6 @@ class Produto{
     public $nomeCategoria;
     public $creado;
     public $modificado;
-    //public $creado;
-    //public $oldId;
 
     // constructor con $db como conexión coa base de datos
     public function __construct($db) {
@@ -29,8 +25,6 @@ class Produto{
         $num = $stmt->num_rows;
 
         if ($num != 0) {
-            // echo "testing1";
-            // var_dump($num);
             return true;
         }
         else {
@@ -59,25 +53,19 @@ class Produto{
 
     function crear() {
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . " 
-          SET 
-         id = ? , 
-         nome = ? ,
-         prezo = ? ,
-         descricion = ? ,
-         idCategoria = ? ,
-         creado = ? ,
-         modificado = ? ");
+        (nome, descricion, prezo, idCategoria, creado, modificado) 
+        VALUES ( ?, ?, ?,  ?,  ?,  ? )");
 
-        $this->id = null;
+        //$this->id = null;
         $this->nome=htmlspecialchars(strip_tags($this->nome));
         $this->prezo=htmlspecialchars(strip_tags($this->prezo));
         $this->descricion=htmlspecialchars(strip_tags($this->descricion));
         $this->idCategoria=htmlspecialchars(strip_tags($this->idCategoria));
-        $this->creado = date("Y-m-d H:i:s");
-        $this->modificado = date("Y-m-d H:i:s");
+        $creado = date("Y-m-d H:i:s");
+        $modificado = date("Y-m-d H:i:s");
     
 
-        $stmt->bind_param("issiiss", $this->id, $this->nome, $this->descricion, $this->prezo, $this->idCategoria, $this->creado, $this->modificado);
+        $stmt->bind_param("ssiiss", $this->nome, $this->descricion, $this->prezo, $this->idCategoria, $creado, $modificado);
         $stmt->execute();
         return $stmt;
     }
@@ -107,11 +95,11 @@ class Produto{
         if ($existeID) {
             $stmt = $this->conn->prepare("UPDATE ".$this->taboa." SET 
             nome = ?, 
-            descricion= ?, 
+            descricion = ?, 
             prezo = ?, 
-            idCategoria= ?, 
+            idCategoria = ?, 
             modificado = ?
-            WHERE id = ?");
+             WHERE id = ? ");
 
             $this->nome=htmlspecialchars(strip_tags($this->nome));
             $this->prezo=htmlspecialchars(strip_tags($this->prezo));
@@ -120,12 +108,13 @@ class Produto{
             $this->id=htmlspecialchars(strip_tags($this->id));
             $this->modificado = date("Y-m-d H:i:s");
 
-            $stmt->bind_param("ssiiis", $this->nome, $this->descricion, 
-                $this->prezo, $this->idCategoria, $this->id, $this->modificado);
+            $stmt->bind_param("ssiisi", $this->nome, $this->descricion, 
+                $this->prezo, $this->idCategoria, $this->modificado, $this->id);
 
             $stmt->execute();
             return $stmt;
         }
+
     }
 
     function borrar() {

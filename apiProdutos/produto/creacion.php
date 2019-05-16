@@ -14,7 +14,7 @@
 
     if (empty($data->nome) || empty($data->descricion) || empty($data->prezo)) { 
         http_response_code(400);
-        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+        echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);
     }
     else {
         
@@ -27,15 +27,15 @@
         // $produto->creado = $data->creado;
         // $produto->modificado = $data->modificado;
         $stmt = $produto->crear();
-        var_dump($data);
+        //var_dump($data);
         
         if ($stmt) {
             http_response_code(201);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);    
+            echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);    
         }
         else {
             http_response_code(503);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);    
+            echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);    
         }
     }
 
