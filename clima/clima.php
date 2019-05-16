@@ -2,6 +2,7 @@
 <html>
     <head>
         <style>
+
             :root {
                 --main-box-color: hsla(0, 59%, 60%, 0.5);
                 --box-temp-color: hsl(172, 91%, 45%);
@@ -42,6 +43,7 @@
                 }
                 #box-humedad {
                     grid-area: hume;
+                    
                 }
                 #box-humedad-max {
                     grid-area: hume-max;
@@ -84,25 +86,19 @@
             }
             #bigbox div:nth-child(1), #bigbox div:nth-child(5) { /* Primera casilla vertical, Cuarta */
                 border-radius: 5px 5px 0px 0px;
+                border-bottom: 0px var(--border-temp-color) solid;
             }
             #bigbox div:nth-child(3), #bigbox div:nth-child(7) { /* Ultima casilla vertical */
                 border-radius: 0px 0px 5px 5px;
+                border-top: 1.2px var(--border-temp-color) solid;
             }
             #bigbox div:nth-child(4), #bigbox div:nth-child(8) { /* Casillas verticalmente solitarias */
                 border-radius: 5px 5px 5px 5px;
             }
 
-                /* #box-dia {
-                    grid-area: dia;
-                }
-                #box-ciudad {
-                    grid-area: ciudad;
-                } */
-
-
-                .font-bold {
-                    font-weight: bold;
-                }
+            .font-bold {
+                font-weight: bold;
+            }
 
         </style>
     </head>

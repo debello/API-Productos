@@ -11,7 +11,7 @@
     $data->id = $_GET['id'];
 
     if (empty($data->id)) {   
-        http_response_code(503);
+        http_response_code(400);
         echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
 
     }
@@ -21,11 +21,11 @@
         var_dump($data);
         
         if ($stmt) {
-            http_response_code(200);
+            http_response_code(201);
             echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
         }
         else {
-            http_response_code(404);
+            http_response_code(503);
             echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
         }
     }

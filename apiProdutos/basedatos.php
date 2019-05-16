@@ -23,9 +23,11 @@
     }
 
     $err_messages = [
-        200 => 'A solicitude tramitouse con exito',    
-        203 => 'Peticion realizada con exito',
-        404 => 'O produto non existe na base de datos', 
-        503 => 'Erro no procesamento da peticion' ];
+        200 => 'Actualizouse o produto. Para o código de resposta 200.',
+        201 => 'Creado con éxito. 201.',    
+        503 => 'Produciuse un erro ao crear o produto. Para o código de resposta 503.',
+        400 => 'Non se puido crear o produto. Datos incompletos. Para o código de resposta 400.',
+        404 => 'Solicitud non encontrada. 404.'
+        ];
 
 ?>

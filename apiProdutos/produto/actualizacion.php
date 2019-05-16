@@ -10,12 +10,11 @@
 
     $dataJSON = json_decode(file_get_contents('php://input'));
     $dataid = $_GET['id'];
-    var_dump($dataid);
-
+    
     if (empty($dataid) || empty($dataJSON->nome) || 
         empty($dataJSON->descricion) || empty($dataJSON->prezo) || 
         empty($dataJSON->idCategoria)) {
-            http_response_code(503);
+            http_response_code(400);
             echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
     }
     else {
@@ -26,15 +25,15 @@
         $produto->idCategoria = $dataJSON->idCategoria;
         
         $stmt = $produto->actualizar();
-        var_dump($dataJSON);
         
         if ($stmt) {
-            http_response_code(200);
+            http_response_code(201);
             echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
         }
         else {
-            http_response_code(404);
+            http_response_code(503);
             echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            echo " La ID no existe.";
         }
     }
 

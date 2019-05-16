@@ -1,3 +1,11 @@
+
+chcp 65001
+acentos
+avisar si existe ID (creacion, actualizacion)
+creacion
+fecha creado 
+errores mejores definidos
+
 Recurso     Método-HTTP        Ruta Real                        Funcion
 -------     -----------        ---------------------            ----------------------
 Produtos        
@@ -57,6 +65,7 @@ curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/camiseta"
 
 // Crear
 curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
+curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
 
 
 // Buscar (Uno, según Id)
