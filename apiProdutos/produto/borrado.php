@@ -21,12 +21,13 @@
         var_dump($data);
         
         if ($stmt) {
-            http_response_code(201);
+            http_response_code(200);
+            echo "Borrado.";
             echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);
         }
         else {
             http_response_code(503);
-            echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);
+            echo json_encode(array("message" => "Non se puido borrar o producto. A ID seleccionada non existe."),  JSON_UNESCAPED_UNICODE);
         }
     }
 

@@ -118,13 +118,16 @@ class Produto{
     }
 
     function borrar() {
-        $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
-        WHERE id = ?");
+        $existeID = $this->consultarID();
+        if ($existeID) {
+            $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
+            WHERE id = ?");
 
-        $this->id=htmlspecialchars(strip_tags($this->id));
-        $stmt->bind_param("i", $this->id);
-        $stmt->execute();
-        return $stmt;
+            $this->id=htmlspecialchars(strip_tags($this->id));
+            $stmt->bind_param("i", $this->id);
+            $stmt->execute();
+            return $stmt;
+        }
     }
 
     function buscar() {

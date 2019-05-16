@@ -1,11 +1,16 @@
 
-[-] chcp 65001
-[-] acentos
-[-] avisar si existe ID ( actualizacion)
+[O] chcp 65001
+[O] acentos
+[O] avisar si existe ID ( actualizacion)
 [O] actualizacion -> fecha modificado
 [O] creacion
 [O] fecha creado 
-[-] errores mejores definidos
+
+[-] Errores mejores definidos
+[-] Lo mismo en categorias
+        [-] 3/6
+        [-] 6/6
+
 
 Recurso     Método-HTTP        Ruta Real                        Funcion
 -------     -----------        ---------------------            ----------------------
