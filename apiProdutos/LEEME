@@ -130,5 +130,4 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
 
 
 Recursos y bibliografía
-        https://www.codeofaninja.com/2017/02/create-simple-rest-api-in-php.html
         https://diego.com.es/sentencias-preparadas-en-php
