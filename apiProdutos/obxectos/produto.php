@@ -114,7 +114,6 @@ class Produto{
             $stmt->execute();
             return $stmt;
         }
-
     }
 
     function borrar() {

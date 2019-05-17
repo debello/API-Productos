@@ -23,17 +23,16 @@
         $produto->descricion = $dataJSON->descricion;
         $produto->prezo = $dataJSON->prezo;
         $produto->idCategoria = $dataJSON->idCategoria;
-        
         $stmt = $produto->actualizar();
         
         if ($stmt) {
             http_response_code(200);
-            echo "Actualizado.";
+            echo "Actualizado. ";
             echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
             
         }
         else {
-            echo " A ID non existe.";
+            echo " A ID non existe. ";
             http_response_code(503);
             echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
         }

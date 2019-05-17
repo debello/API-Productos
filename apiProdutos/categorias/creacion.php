@@ -13,23 +13,23 @@
     $data = json_decode(file_get_contents('php://input'));
 
     if (empty($data->nome) || empty($data->descricion)) {
-            
-        http_response_code(503);
-        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+        http_response_code(400);
+        echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
     }
     else {
         $categoria->nome = $data->nome;
         $categoria->descricion = $data->descricion;
+        $categoria->creado = date('Y-m-d H:i:s');
+        $categoria->modificado = date("Y-m-d H:i:s");
         $stmt = $categoria->crear();
-        var_dump($data);
-        
+
         if ($stmt){
-            http_response_code(201);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            http_response_code(200);
+            echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
         }
         else {
-            http_response_code(404);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            http_response_code(503);
+            echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
         }
     }
 

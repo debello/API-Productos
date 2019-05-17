@@ -36,7 +36,7 @@
 
     else {
         http_response_code(404);
-        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+        echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
     }
 
 ?>

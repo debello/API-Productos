@@ -24,13 +24,10 @@
         $produto->idCategoria = $data->idCategoria;
         $produto->creado = date('Y-m-d H:i:s');
         $produto->modificado = date("Y-m-d H:i:s");
-        // $produto->creado = $data->creado;
-        // $produto->modificado = $data->modificado;
         $stmt = $produto->crear();
-        //var_dump($data);
         
         if ($stmt) {
-            http_response_code(201);
+            http_response_code(200);
             echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);    
         }
         else {

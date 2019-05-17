@@ -5,11 +5,13 @@
 [O] actualizacion -> fecha modificado
 [O] creacion
 [O] fecha creado 
-
-[-] Errores mejores definidos
-[-] Lo mismo en categorias
-        [-] 3/6
-        [-] 6/6
+[O] Errores mejor definidos
+[O] Lo mismo en categorias
+        [O] 3/6
+        [O] 6/6
+[-] htacces produtos/ choca con lectura.php y creacion.php
+        [-] Crear servidor (otro archivo) para manejar GET y POST
+        [-] En htaccess adjudicar /produtos/ tanto a lectura.php como creacion.php
 
 
 Recurso     Método-HTTP        Ruta Real                        Funcion
@@ -70,10 +72,7 @@ curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos"
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/camiseta"
 
 // Crear
-// curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produto/creacion.php"
-// curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
 curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\", \"idCategoria\":\"2\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
-
 
 
 // Buscar (Uno, según Id)

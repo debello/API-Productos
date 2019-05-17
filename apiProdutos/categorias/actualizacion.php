@@ -14,8 +14,8 @@
     if (empty($data->id) || empty($data->nome) || 
         empty($data->descricion)) {
             
-        http_response_code(503);
-        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+        http_response_code(400);
+        echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
 
     }
     else {
@@ -23,15 +23,16 @@
         $categoria->nome = $data->nome;
         $categoria->descricion = $data->descricion;
         $stmt = $categoria->actualizar();
-        var_dump($data);
         
         if ($stmt) {
             http_response_code(200);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            echo "Actualizado. ";
+            echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
         }
         else {
-            http_response_code(404);
-            echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+            http_response_code(503);
+            echo " A ID non existe ";
+            echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
         }
     }
 

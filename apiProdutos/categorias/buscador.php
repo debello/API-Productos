@@ -29,13 +29,14 @@
         }
         // 200 OK
         http_response_code(200);
-        echo json_encode($categorias_arr,JSON_PRETTY_PRINT);
-        echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+        echo json_encode($categorias_arr,JSON_UNESCAPED_UNICODE);
+        echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
     }
     else{
     // 404 Not found
     http_response_code(404);
-    echo json_encode($err_messages[http_response_code()], JSON_PRETTY_PRINT);
+    echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
+    echo " El artículo que se busca no existe. ";
     }
 
 ?>

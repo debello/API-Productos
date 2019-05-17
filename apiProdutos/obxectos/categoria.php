@@ -13,12 +13,25 @@ class Categoria{
     public $nomeCategoria;
     public $creado;
     public $oldId;
+    public $modificado;
 
     // constructor con $db como conexión coa base de datos
     public function __construct($db) {
         $this->conn = $db;
     }
 
+    function consultarID() {
+        $query = "SELECT * FROM " .$this->taboa. " WHERE id = " .$this->id;
+        $stmt = $this->conn->query($query);
+        $num = $stmt->num_rows;
+
+        if ($num != 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     // lectura de produtos
     function ler() {
         // consulta select all
@@ -40,13 +53,15 @@ class Categoria{
 
     function crear() {
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . "
-        (nome, descricion) 
-        VALUES (?, ?)");
+        (nome, descricion, creada, modificada) 
+        VALUES (?, ?, ?, ? )");
 
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->descricion = htmlspecialchars(strip_tags($this->descricion));
+        $this->creado = htmlspecialchars(strip_tags($this->creado));
+        $this->modificado = htmlspecialchars(strip_tags($this->modificado));
 
-        $stmt->bind_param("ss", $this->nome, $this->descricion);
+        $stmt->bind_param("ssss", $this->nome, $this->descricion, $this->creado, $this->modificado);
         $stmt->execute();
         return $stmt;
     }
@@ -63,28 +78,36 @@ class Categoria{
     }
 
     function actualizar() {
-        $stmt = $this->conn->prepare("UPDATE ".$this->taboa." SET 
-        nome = ?, 
-        descricion = ? 
-        WHERE id = ?");
+        $existeID = $this->consultarID();
+            if ($existeID) {
+                $stmt = $this->conn->prepare("UPDATE ".$this->taboa." SET 
+                nome = ?, 
+                descricion = ?, 
+                modificada = ?  
+                WHERE id = ?");
 
-        $this->nome=htmlspecialchars(strip_tags($this->nome));
-        $this->descricion=htmlspecialchars(strip_tags($this->descricion));
-        $this->id=htmlspecialchars(strip_tags($this->id));
+                $this->nome=htmlspecialchars(strip_tags($this->nome));
+                $this->descricion=htmlspecialchars(strip_tags($this->descricion));
+                $this->id=htmlspecialchars(strip_tags($this->id));
+                $this->modificado = date("Y-m-d H:i:s");
 
-        $stmt->bind_param("ssi", $this->nome, $this->descricion, $this->id);
-        $stmt->execute();
-        return $stmt;
+                $stmt->bind_param("sssi", $this->nome, $this->descricion, $this->modificado, $this->id);
+                $stmt->execute();
+                return $stmt;
+            }
     }
 
-    function borrar() {      
-        $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
-        WHERE id = ?");
+    function borrar() {   
+        $existeID = $this->consultarID();
+        if ($existeID) {   
+            $stmt = $this->conn->prepare("DELETE FROM ".$this->taboa." 
+            WHERE id = ?");
 
-        $this->id=htmlspecialchars(strip_tags($this->id));
-        $stmt->bind_param("i", $this->id);
-        $stmt->execute();
-        return $stmt;
+            $this->id=htmlspecialchars(strip_tags($this->id));
+            $stmt->bind_param("i", $this->id);
+            $stmt->execute();
+            return $stmt;
+        }
     }
 
     function buscar() {
