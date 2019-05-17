@@ -1,10 +1,10 @@
 
-[O] chcp 65001
-[O] acentos
-[O] avisar si existe ID ( actualizacion)
-[O] actualizacion -> fecha modificado
-[O] creacion
-[O] fecha creado 
+[O] Chcp 65001
+[O] Acentos
+[O] Avisar si existe ID ( actualizacion)
+[O] Actualizacion -> fecha modificado
+[O] Creacion
+[O] Fecha creado 
 [O] Errores mejor definidos
 [O] Lo mismo en categorias
         [O] 3/6
@@ -134,14 +134,14 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
         
 [O] Array con los mensajes de error.
 [O] Revisión
-        [-] Mostrar todas las columnas (Creado, Modificado)
+        [O] Mostrar todas las columnas (Creado, Modificado)
                 [O] En Produtos
                 [O] En Categorias
 [O] htaccess
         [O] GET producto y productos{id}
         [O] GET POST... ?{id} según se escoja
 
-[-] htaccess Categorias
+[\] htaccess Categorias
 
 
 

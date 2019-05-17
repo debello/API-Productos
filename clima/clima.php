@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    <meta charset="UTF-8">
         <style>
 
             :root {
@@ -12,24 +13,25 @@
             body {
                 margin: 20px;
             }
+
             #bigbox {
                 display: grid;
                 grid-template-columns: auto auto auto auto 1fr ; /* La última columna debe ser 1fr */
-                grid-template-rows: auto auto auto ;
+                grid-template-rows: 80px 59px 59px ;
                 grid-template-areas:
                 " temp preci hume uv "
                 " max . hume-max . "
                 " min . hume-min . ";                          
                 place-self: center;
-                
                 /* background-color: var(--main-box-color); */
                 width: auto;
-                height: 220px;
+                height: 400px;
                 border-radius: 10px;
                 margin: 15px;
                 font-weight: bold;
             }
-            #box-temp {
+
+                #box-temp {
                     grid-area: temp;
                 }
                 #box-temp-max {
@@ -40,11 +42,9 @@
                 }
                 #box-preci {
                     grid-area: preci;
-                    width: auto;
                 }
                 #box-humedad {
                     grid-area: hume;
-                    
                 }
                 #box-humedad-max {
                     grid-area: hume-max;
@@ -78,12 +78,12 @@
                 /* border-radius: 5px; */
                 padding: 7px;
                 margin: 0px 7px 0px 5px;
-                border-top: 1.5px var(--border-temp-color) solid;
-                border-left: 1.5px var(--border-temp-color) solid;
-                border-right: 1.5px var(--border-temp-color) solid;
+                border-top: 2px var(--border-temp-color) solid;
+                border-left: 2px var(--border-temp-color) solid;
+                /* border-right: 2px var(--border-temp-color) solid; */
                 font-family: Arial;
                 color: white;
-                box-shadow: 2px 3px 0px 0px rgba(0,0,0,0.5);
+                box-shadow: 2.5px 2.5px 0px 0px rgba(0,0,0,0.5);
             }
             #bigbox div:nth-child(1), #bigbox div:nth-child(5) { /* Primera casilla vertical, Cuarta */
                 border-radius: 5px 5px 0px 0px;
@@ -94,7 +94,14 @@
                 /* border-top: 1.2px var(--border-temp-color) solid; */
             }
             #bigbox div:nth-child(4), #bigbox div:nth-child(8) { /* Casillas verticalmente solitarias */
-                border-radius: 5px 5px 5px 5px;
+                border-radius: 5px 5px 5px 5px;  
+            }
+            #bigbox div:nth-child(2), #bigbox div:nth-child(3), #bigbox div:nth-child(6),
+            #bigbox div:nth-child(7) { /* Casillas verticalmente solitarias */
+                /* margin-left: auto;
+                margin-right: auto; */
+                
+                
             }
 
             .font-bold {
@@ -133,43 +140,30 @@
         'Content-type:application/json'));
         //executar con curl_exec()
         $data = curl_exec($cliente2);
-        $dataDecoded = json_decode(preg_replace('/[\x00-\x1F\x80-\xFF]/', '', $data));
+        //$data = preg_replace('~\[([^\[\]]+)\]([^\[\]]++)\[/([^\[\]]++)\]~', '', $data);
+        //$data = preg_replace('/[\xFF]/', '', $data); // muestra A+a en lugar de Ñ
+        $data = utf8_encode($data);
+        $dataDecoded = json_decode($data);
+        //$dataDecoded = json_decode($data, false, 512, JSON_UNESCAPED_UNICODE);
         
         // Testing objeto $dataDecoded;
         // echo 'Precipitacion??' .$dataDecoded[0]->prediccion->dia[0]->probPrecipitacion[0]->value;
         // echo 'Humedad Relativa max ??' .$dataDecoded[0]->prediccion->dia[0]->humedadRelativa->maxima;
-        // echo 'Humedad Relativa min??' .$dataDecoded[0]->prediccion->dia[0]->humedadRelativa->minima;
-        
-        /* Saber qué número de día de la semana es Hoy */ 
-        // function saber_dia($nombredia) {
-        //     $dias = array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
-        //     $fecha = $dias[date('N', strtotime($nombredia))];
-        //     $fechaKey = array_search($fecha, $dias);
-        //     return $fechaKey;
-        //     }
-        // // // Ejecutamos la función pasándole la fecha que queremos
-        // $numDiaHoy = saber_dia($dataDecoded[0]->elaborado);
-    
+
     ?>
 
     <h2>TuClima.com</h2>
     <p><?php echo 'Día: <span class="font-bold">' . $dataDecoded[0]->elaborado . "</span> Ciudad: <span class='font-bold'>" . utf8_encode($dataDecoded[0]->provincia) . "</span><br>"; ?></p>
 
     <div id='bigbox'>
-        <!-- <div id='box-dia'> 
-            
-        </div>
-        <div id='box-ciudad'>
-            
-        </div>   -->
         <div id='box-temp'>
             <p>Temperatura</p>
         </div>
         <div id='box-temp-max'>
-            <p>Máx. <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->temperatura->maxima; ?></p>
+            <p>Max. <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->temperatura->maxima; ?></p>
         </div>  
         <div id='box-temp-min'>
-            <p>Mín. <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->temperatura->minima; ?></p>
+            <p>Min. <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->temperatura->minima; ?></p>
         </div> 
         <div id='box-preci'>
             <p> Precipitaciones: 
