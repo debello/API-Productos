@@ -17,9 +17,12 @@
             .intro {
                 display: grid;
                 align-items: center;
-                width: 270px;
+                width: 170px;
                 height: auto;                
 
+                /* grid-template-columns: auto 1fr; /* La última columna debe ser 1fr */
+                /* grid-template-areas: 
+                " ab cd "; */ 
                 background-color: var(--box-temp-color); 
                 font-family: Arial;
                 color: white;
@@ -33,6 +36,10 @@
                 border-left: 2px var(--border-temp-color) solid;
                  
             }
+            /* .intro p {
+                width: auto;
+                grid-area: ab:
+            } */
 
             #bigbox {
                 display: grid;
@@ -165,7 +172,7 @@
     ?>
 
     <!-- <h2>TuClima.com</h2> -->
-    <div class="intro"><p><?php echo 'Día: <span class="font-bold">' . $dataDecoded[0]->elaborado . "</span> Ciudad: <span class='font-bold'>" . $dataDecoded[0]->provincia . "</span><br>"; ?></p></div>
+    <div class="intro"><p><?php echo '<span class="font-bold">' . $dataDecoded[0]->elaborado . "</span> - <span class='font-bold'>" . $dataDecoded[0]->provincia . "</span><br>"; ?></p></div>
 
     <div id='bigbox'>
         <div id='box-temp'>
