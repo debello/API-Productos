@@ -1,4 +1,3 @@
-
 [O] Chcp 65001
 [O] Acentos
 [O] Avisar si existe ID ( actualizacion)
@@ -72,7 +71,7 @@ curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos"
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/camiseta"
 
 // Crear
-curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\", \"idCategoria\":\"2\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
+curl -v -X POST -d "{\"nome\":\"Probando Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\", \"idCategoria\":\"2\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
 
 // Buscar (Uno, según Id)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
