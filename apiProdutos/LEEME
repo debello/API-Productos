@@ -1,30 +1,25 @@
-[O] Chcp 65001
-[O] Acentos
-[O] Avisar si existe ID ( actualizacion)
-[O] Actualizacion -> fecha modificado
-[O] Creacion
-[O] Fecha creado 
-[O] Errores mejor definidos
-[O] Lo mismo en categorias
-        [O] 3/6
-        [O] 6/6
-[O] htacces produtos/ choca con lectura.php y creacion.php
-        [O] Crear servidor (otro archivo) para manejar GET y POST
-        [O] En htaccess adjudicar /produtos/ tanto a lectura.php como creacion.php
+### MODO DE USO ###
+
+Instalación 
+        1. Creamos una base de datos y dos tablas definidas en el archivo 'bd.sql'
+        2. Desde la consola de comandos usamos curl y el método que necesitemos, por ejemplo
+                curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos"
+
 
 
 Recurso     Método-HTTP        Ruta Real                        Funcion
 -------     -----------        ---------------------            ----------------------
-Produtos        
-                GET             /produto/lectura.php            Ver todas las entradas
-                POST            /produto/creacion.php           Crea unha entrada(produto)
+Produtos                        /produto/handleGETPOST.php
+                GET                                             Ver todas las entradas
+                POST                                            Crea unha entrada(produto)
+
 Produtos/{nome}
                 GET             /produto/buscador.php           Ver 1 entrada según 'nome'
 
-Produtos/{id}
-                GET             /produto/lectura1.php?         Ver 1 entrada según ID
-                PUT             /produto/actualizacion.php      Actualiza los valores de un produto
-                DELETE          /produto/borrado.php            Borra unha entrada según o id
+Produtos/{id}                   /produto/handleRequest.php
+                GET                                             Ver 1 entrada según ID
+                PUT                                             Actualiza los valores de un produto
+                DELETE                                          Borra unha entrada según o id
 
 --------------------------------------------------------------------------------------------------------
 
@@ -37,12 +32,16 @@ Categorias      GET             /categorias/lectura.php          Ver todas las e
 
 
 
+
 // Arquitectura
+LEEME
 basededatos.php
 bd.sql
-LEEME
+handleRequest.php
+handleGETPOST.php
 .htaccess
-objetos/
+
+obxectos/
         producto.php
 
 produto/
@@ -63,6 +62,7 @@ categorias/
 
 
 
+
 // PRODUTOS
 // Buscar (Todo)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos"
@@ -71,7 +71,8 @@ curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos"
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/camiseta"
 
 // Crear
-curl -v -X POST -d "{\"nome\":\"Probando Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\", \"idCategoria\":\"2\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
+curl -v -X POST -d "{\"nome\":\"Almofada\",\"descricion\":\"A mellor almofada para deportistas\",\"prezo\":\"199\", \"idCategoria\":\"2\"}" "http://localhost:8080/servizoweb/apiprodutos/produtos"
+
 
 // Buscar (Uno, según Id)
 curl -v "http://localhost:8080/servizoweb/apiprodutos/produtos/1"
@@ -107,6 +108,9 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+## To-do List ##
 [O] CRUD (Create, Read, Read-Id, Read-Nome, Update, Delete)
         [O] Leer todo
         [O] Crear producto
@@ -142,6 +146,21 @@ curl -v -X PUT -d "{\"nome\":\"Animales\",\"descricion\":\"Unos animales\",\"id\
 [\] htaccess Categorias
 
 
+## 1ª Revision ##
+[O] Chcp 65001
+[O] Acentos
+[O] Avisar si existe ID ( actualizacion)
+[O] Actualizacion -> fecha modificado
+[O] Creacion
+[O] Fecha creado 
+[O] Errores mejor definidos
+[O] Lo mismo en categorias
+        [O] 3/6
+        [O] 6/6
+[O] htacces produtos/ choca con lectura.php y creacion.php
+        [O] Crear servidor (otro archivo) para manejar GET y POST
+        [O] En htaccess adjudicar /produtos/ tanto a lectura.php como creacion.php
 
-Recursos y bibliografía
+
+## Recursos y bibliografía ##
         https://diego.com.es/sentencias-preparadas-en-php
