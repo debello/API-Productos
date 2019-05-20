@@ -14,6 +14,26 @@
                 margin: 20px;
             }
 
+            .intro {
+                display: grid;
+                align-items: center;
+                width: 270px;
+                height: auto;                
+
+                background-color: var(--box-temp-color); 
+                font-family: Arial;
+                color: white;
+                box-shadow: 2.5px 2.5px 0px 0px rgba(0,0,0,0.5);
+                border-radius: 5px 5px 5px 5px; 
+                margin: 15px 22px 15px 20px;
+                padding: 7px;
+                padding-left: 10px;
+                padding-right: 10px;
+                border-top: 2px var(--border-temp-color) solid;
+                border-left: 2px var(--border-temp-color) solid;
+                 
+            }
+
             #bigbox {
                 display: grid;
                 grid-template-columns: auto auto auto auto 1fr ; /* La última columna debe ser 1fr */
@@ -64,7 +84,7 @@
             }
 
             #bigbox div p {
-                padding-left: 5px;
+                padding-left: 10px;
                 padding-right: 10px;
             }
 
@@ -106,6 +126,7 @@
             }
 
         </style>
+        <title>  Probando titulo </title>
     </head>
     <body>
 
@@ -143,8 +164,8 @@
 
     ?>
 
-    <h2>TuClima.com</h2>
-    <p><?php echo 'Día: <span class="font-bold">' . $dataDecoded[0]->elaborado . "</span> Ciudad: <span class='font-bold'>" . $dataDecoded[0]->provincia . "</span><br>"; ?></p>
+    <!-- <h2>TuClima.com</h2> -->
+    <div class="intro"><p><?php echo 'Día: <span class="font-bold">' . $dataDecoded[0]->elaborado . "</span> Ciudad: <span class='font-bold'>" . $dataDecoded[0]->provincia . "</span><br>"; ?></p></div>
 
     <div id='bigbox'>
         <div id='box-temp'>
@@ -161,7 +182,7 @@
             <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[1]->probPrecipitacion[0]->value. "%"; ?></p>
         </div>  
         <div id='box-humedad'>
-            <p><img src="img/humid1.png" width="40px" /></p>
+            <p><img src="img/humid1.png" width="35px" /></p>
         </div>
         <div id='box-humedad-max'>
             <p> Max.  <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->humedadRelativa->maxima. "%"; ?></p>

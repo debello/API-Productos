@@ -9,9 +9,9 @@
 [O] Lo mismo en categorias
         [O] 3/6
         [O] 6/6
-[-] htacces produtos/ choca con lectura.php y creacion.php
-        [-] Crear servidor (otro archivo) para manejar GET y POST
-        [-] En htaccess adjudicar /produtos/ tanto a lectura.php como creacion.php
+[O] htacces produtos/ choca con lectura.php y creacion.php
+        [O] Crear servidor (otro archivo) para manejar GET y POST
+        [O] En htaccess adjudicar /produtos/ tanto a lectura.php como creacion.php
 
 
 Recurso     Método-HTTP        Ruta Real                        Funcion
