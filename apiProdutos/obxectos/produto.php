@@ -43,7 +43,7 @@ class Produto{
                         categorias c
                             ON p.idCategoria = c.id
                 ORDER BY
-                    p.creado DESC";
+                    p.id ASC";
         // prepara a consulta
         $stmt = $this->conn->query($query);
         // execución da consulta
@@ -53,8 +53,8 @@ class Produto{
 
     function crear() {
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . " 
-         (nome, descricion, prezo, idCategoria, creado, modificado) 
-        VALUES ( ?, ?, ?, ?, ?, ? )");
+         (id, nome, descricion, prezo, idCategoria, creado, modificado) 
+        VALUES ( DEFAULT, ?, ?, ?, ?, ?, ? )");
 
         //$this->id = null;
         $this->nome=htmlspecialchars(strip_tags($this->nome));
