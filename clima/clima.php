@@ -148,7 +148,7 @@
 
     <div id='bigbox'>
         <div id='box-temp'>
-            <p>Temperatura</p>
+            <p><img src="img/sol.png" width="40px" /></p>
         </div>
         <div id='box-temp-max'>
             <p>Max. <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->temperatura->maxima. "ºC"; ?></p>
@@ -157,11 +157,11 @@
             <p>Min. <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->temperatura->minima. "ºC"; ?></p>
         </div> 
         <div id='box-preci'>
-            <p> Precipitaciones: 
+            <p><img src="img/lluvia2.png" width="40px" />
             <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[1]->probPrecipitacion[0]->value. "%"; ?></p>
         </div>  
         <div id='box-humedad'>
-            <p>Humedad Relativa</p>
+            <p><img src="img/humid1.png" width="40px" /></p>
         </div>
         <div id='box-humedad-max'>
             <p> Max.  <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->humedadRelativa->maxima. "%"; ?></p>
@@ -170,7 +170,7 @@
             <p> Min.  <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->humedadRelativa->minima. "%"; ?></p>
         </div>
         <div id='box-ultravioleta'>
-            <p> Velocidad Viento:  <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[1]->viento[0]->velocidad. " km/h"; ?></p>
+            <p> <img src="img/wind1.png" width="45px" />  <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[1]->viento[0]->velocidad. " km/h"; ?></p>
         </div>      
     </div>
     
