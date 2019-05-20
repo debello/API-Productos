@@ -53,19 +53,18 @@ class Produto{
 
     function crear() {
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . " 
-        (nome, descricion, prezo, idCategoria, creado, modificado) 
-        VALUES ( ?, ?, ?,  ?,  ?,  ? )");
+         (nome, descricion, prezo, idCategoria, creado, modificado) 
+        VALUES ( ?, ?, ?, ?, ?, ? )");
 
         //$this->id = null;
         $this->nome=htmlspecialchars(strip_tags($this->nome));
         $this->prezo=htmlspecialchars(strip_tags($this->prezo));
         $this->descricion=htmlspecialchars(strip_tags($this->descricion));
         $this->idCategoria=htmlspecialchars(strip_tags($this->idCategoria));
-        $creado = date("Y-m-d H:i:s");
-        $modificado = date("Y-m-d H:i:s");
+        $this->creado = htmlspecialchars(strip_tags($this->creado));
+        $this->modificado = htmlspecialchars(strip_tags($this->modificado));
     
-
-        $stmt->bind_param("ssiiss", $this->nome, $this->descricion, $this->prezo, $this->idCategoria, $creado, $modificado);
+        $stmt->bind_param("ssiiss", $this->nome, $this->descricion, $this->prezo, $this->idCategoria, $this->creado, $this->modificado);
         $stmt->execute();
         return $stmt;
     }

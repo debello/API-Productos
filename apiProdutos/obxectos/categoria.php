@@ -54,7 +54,7 @@ class Categoria{
     function crear() {
         $stmt = $this->conn->prepare("INSERT INTO " . $this->taboa . "
         (nome, descricion, creada, modificada) 
-        VALUES (?, ?, ?, ? )");
+        VALUES ( ?, ?, ?, ? )");
 
         $this->nome = htmlspecialchars(strip_tags($this->nome));
         $this->descricion = htmlspecialchars(strip_tags($this->descricion));

@@ -23,20 +23,13 @@
 
         private function handle_name($method) {
             switch($method) {
-                // case 'POST':
-                //     include 'produto/creacion.php';
-                //     break;
-
-                case 'PUT':
-                    include 'produto/actualizacion.php';
-                    break;
-
-                case 'DELETE':
-                    include 'produto/borrado.php';
-                    break;
-
+                
                 case 'GET':
-                    include 'produto/lectura1.php';
+                    include 'produto/lectura.php';
+                    break;
+
+                case 'POST':
+                    include 'produto/creacion.php';
                     break;
 
                 default:
@@ -48,6 +41,6 @@
     }
 
     $handle = new Servidor;
-    $conec = $handle->serve();
+    $conec2 = $handle->serve();
             
 ?>

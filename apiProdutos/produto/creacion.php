@@ -11,7 +11,7 @@
 
     $data = json_decode(file_get_contents('php://input'));
     
-
+    echo "sb1";
     if (empty($data->nome) || empty($data->descricion) || empty($data->prezo)) { 
         http_response_code(400);
         echo json_encode($err_messages[http_response_code()],  JSON_UNESCAPED_UNICODE);
