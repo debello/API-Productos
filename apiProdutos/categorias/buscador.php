@@ -20,17 +20,18 @@
         while ($item=$stmt->fetch_assoc()){
             $item_categoria=array(
                 "id" => $item["id"],
-                "nome" => utf8_decode($item["nome"]),
-                "descricion" => utf8_decode($item["descricion"]),
-                "creada" => utf8_decode($item["creada"]),
-                "modificada" => utf8_decode($item["modificada"]),
+                "nome" => utf8_encode($item["nome"]),
+                //"idCategoria" => $item["idCategoria"],
+                "descricion" => utf8_encode($item["descricion"]),
+                "creada" => $item["creada"],
+                "modificada" => $item["modificada"],
             );
             array_push($categorias_arr["records"],$item_categoria);
         }
         // 200 OK
         http_response_code(200);
-        echo json_encode($categorias_arr, JSON_PRETTY_PRINT);
         echo json_encode($err_messages[http_response_code()], JSON_UNESCAPED_UNICODE);
+        echo json_encode($categorias_arr, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
     else{
     // 404 Not found

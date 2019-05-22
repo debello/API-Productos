@@ -34,9 +34,9 @@ class Categoria{
     }
     // lectura de produtos
     function ler() {
-        // consulta select all
+        // Cambiar INNER por LEFT o RIGHT según se requiera
             $query = "SELECT
-            p.id as ID, c.id as idCategoria, c.nome, c.descricion, c.creada, c.modificada
+            p.id as ID, c.nome, c.id as idCategoria, c.descricion, c.creada, c.modificada
         FROM
             produtos p
             LEFT JOIN
