@@ -183,11 +183,13 @@
         </div>  
         <div id='box-temp-min'>
             <p>Min. <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->temperatura->minima. "ºC"; ?></p>
-        </div> 
+        </div>
+
         <div id='box-preci'>
             <p><img src="img/lluvia2.png" width="40px" />
             <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[1]->probPrecipitacion[0]->value. "%"; ?></p>
-        </div>  
+        </div> 
+
         <div id='box-humedad'>
             <p><img src="img/humid1.png" width="35px" /></p>
         </div>
@@ -197,6 +199,7 @@
         <div id='box-humedad-min'>
             <p> Min.  <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[0]->humedadRelativa->minima. "%"; ?></p>
         </div>
+        
         <div id='box-ultravioleta'>
             <p> <img src="img/wind1.png" width="45px" />  <?php echo '&nbsp;'. $dataDecoded[0]->prediccion->dia[1]->viento[0]->velocidad. " km/h"; ?></p>
         </div>      
