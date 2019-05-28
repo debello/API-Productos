@@ -1,0 +1,17 @@
+** MODO DE USO **
+
+Colocar .htaccess en htdocs (NUNCA DENTRO api-premios)
+
+
+Notas propias : 
+
+Actrices y sus premios
+curl -v "http://localhost:8080/api-premios/premios-actrices"
+
+Ver el archivo principal (index.php)
+curl -v "http://localhost:8080/api-premios/"
+
+Ver el año con una ID par y otra con ID impar
+curl -v "http://localhost:8080/api-premios/anoID/2"
+curl -v "http://localhost:8080/api-premios/anoID/3"
+
